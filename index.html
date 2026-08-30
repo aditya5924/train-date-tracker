@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
+    <title>IRCTC Train Booking Date Calculator | 60 Days Advance Tracker</title>
+    <meta name="description" content="Instantly calculate the exact 60-day advance booking date for your IRCTC train journey. Add reminders to your calendar and never miss a confirmed ticket.">
+    <meta name="keywords" content="IRCTC advance booking calculator, 60 days train ticket booking date, train date tracker, Indian Railways booking time, confirmed train ticket, holiday train travel">
+    <meta name="author" content="ASM">
+
+    <!-- Social Media Sharing Tags (Makes it look good if shared on WhatsApp/Facebook) -->
+    <meta property="og:title" content="IRCTC Train Booking Date Calculator">
+    <meta property="og:description" content="Find out exactly when your 60-day train ticket booking window opens.">
+    <meta property="og:type" content="website">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <style>
+        /* --- THEME VARIABLES --- */
+        :root {
+            --bg-overlay-1: rgba(255, 255, 255, 0.70);
+            --bg-overlay-2: rgba(240, 245, 250, 0.65);
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --card-border: rgba(226, 232, 240, 0.8);
+            --inner-box-bg: rgba(248, 250, 252, 0.85);
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --brand-color: #1e40af;
+            --brand-hover: #1e3a8a;
+            --nav-btn-bg: rgba(15, 23, 42, 0.05);
+            --nav-btn-border: rgba(15, 23, 42, 0.1);
+            --shadow-color: rgba(0, 0, 0, 0.08);
+            
+            /* Festive Alert Light Mode */
+            --alert-bg: #fee2e2;
+            --alert-text: #991b1b;
+            --alert-border: #f87171;
+        }
+
+        body.dark-mode {
+            --bg-overlay-1: rgba(15, 23, 42, 0.70);
+            --bg-overlay-2: rgba(2, 6, 23, 0.75);
+            --glass-bg: rgba(30, 41, 59, 0.80);
+            --card-border: rgba(51, 65, 85, 0.8);
+            --inner-box-bg: rgba(15, 23, 42, 0.5);
+            --text-dark: #f8fafc;
+            --text-muted: #94a3b8;
+            --brand-color: #3b82f6;
+            --brand-hover: #60a5fa;
+            --nav-btn-bg: rgba(255, 255, 255, 0.1);
+            --nav-btn-border: rgba(255, 255, 255, 0.2);
+            --shadow-color: rgba(0, 0, 0, 0.4);
+            
+            /* Festive Alert Dark Mode */
+            --alert-bg: rgba(127, 29, 29, 0.4);
+            --alert-text: #fca5a5;
+            --alert-border: #991b1b;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+            background: linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)), 
+                        url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
+            background-size: cover;
+            transition: background 0.4s ease, color 0.4s ease;
+        }
+
+        /* --- NAVIGATION --- */
+        .navbar-custom {
+            background: var(--glass-bg);
+            border-bottom: 1px solid var(--card-border);
+            padding: 15px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s ease;
+        }
+
+        .navbar-brand-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: var(--brand-color);
+            letter-spacing: 1px;
+            margin: 0;
+            text-transform: uppercase;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 12px;
+            align-items: center;
+        }
+
+        .nav-btn {
+            background: var(--nav-btn-bg);
+            border: 1px solid var(--nav-btn-border);
+            color: var(--text-dark);
+            font-weight: 500;
+            font-size: 0.9rem;
+            padding: 8px 18px;
+            border-radius: 20px;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .nav-btn:hover {
+            background: var(--text-dark);
+            color: var(--glass-bg);
+        }
+
+        .theme-btn {
+            border-radius: 50%;
+            padding: 8px 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* --- MAIN CONTENT --- */
+        .main-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+        }
+
+        .glass-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 45px 50px;
+            max-width: 800px;
+            width: 100%;
+            text-align: center;
+            box-shadow: 0 15px 35px var(--shadow-color);
+            transition: all 0.4s ease;
+        }
+
+        .main-heading {
+            font-size: 1.5rem;
+            font-weight: 500;
+            margin-bottom: 25px;
+            line-height: 1.4;
+        }
+
+        .highlight-date {
+            color: var(--brand-color);
+            font-weight: 700;
+            font-size: 2rem;
+            display: block;
+            margin-top: 8px;
+        }
+
+        .info-text {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 12px;
+            line-height: 1.6;
+        }
+
+        /* --- INPUT SECTION --- */
+        .interaction-box {
+            background: var(--inner-box-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 30px;
+            margin-top: 35px;
+            transition: all 0.4s ease;
+        }
+
+        .input-group-custom {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .clean-input {
+            background: var(--glass-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 8px;
+            padding: 12px 18px;
+            color: var(--text-dark);
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+            width: 240px;
+        }
+
+        .clean-input:focus {
+            border-color: var(--brand-color);
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+        }
+
+        body.dark-mode ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+        }
+
+        /* --- RESULT AREA --- */
+        .result-area {
+            margin-top: 25px;
+            padding-top: 25px;
+            border-top: 1px solid var(--card-border);
+            display: none; 
+        }
+
+        .result-area.show {
+            display: block;
+            animation: fadeInDown 0.5s ease-out forwards;
+        }
+
+        .result-date {
+            font-size: 2rem;
+            color: var(--brand-color);
+            font-weight: 700;
+            margin: 5px 0 10px 0;
+            letter-spacing: -0.5px;
+        }
+
+        .btn-calendar {
+            background-color: var(--brand-color);
+            color: #ffffff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 24px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            cursor: pointer;
+        }
+
+        .btn-calendar:hover {
+            background-color: var(--brand-hover);
+            color: #ffffff;
+            transform: translateY(-2px);
+        }
+
+        /* Festive Alert Box */
+        .alert-festive {
+            background-color: var(--alert-bg);
+            color: var(--alert-text);
+            border: 1px solid var(--alert-border);
+            border-radius: 8px;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: none; 
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+
+        /* --- FOOTER --- */
+        .footer {
+            background: var(--glass-bg);
+            border-top: 1px solid var(--card-border);
+            text-align: center;
+            padding: 15px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            transition: all 0.4s ease;
+        }
+
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar-custom">
+        <h1 class="navbar-brand-title"><i class="bi bi-train-front me-2"></i>TRAIN DATE TRACKER</h1>
+        <div class="nav-links">
+            <button type="button" id="themeToggleBtn" class="nav-btn theme-btn" aria-label="Toggle Theme">
+                <i id="themeIcon" class="bi bi-moon-fill"></i>
+            </button>
+            <button type="button" class="nav-btn" data-bs-toggle="modal" data-bs-target="#aboutModal">About</button>
+            <button type="button" class="nav-btn" data-bs-toggle="modal" data-bs-target="#contactModal">Contact</button>
+        </div>
+    </nav>
+
+    <main class="main-container">
+        <div class="glass-card">
+            
+            <h2 class="main-heading">
+                Today you can book tickets for journey date till 
+                <span id="maxBookableDateDisplay" class="highlight-date"></span>
+            </h2>
+            
+            <p class="info-text">The above date is calculated assuming the train starts from the starting station on the same day.</p>
+            <p class="info-text">Calculate when you can start booking IRCTC tickets for any travel date, add the booking date to your favourite calendar, and get notified on the booking day.</p>
+            <p class="info-text">The date on which the particular train starts from the starting station should be mentioned as the Date of Journey.</p>
+
+            <div class="interaction-box">
+                <div class="input-group-custom">
+                    <label for="journeyDate" class="fw-semibold">Enter Date of Journey:</label>
+                    <input type="date" id="journeyDate" class="clean-input">
+                </div>
+
+                <div id="resultContainer" class="result-area">
+                    
+                    <div id="festiveWarning" class="alert-festive">
+                        <i class="bi bi-exclamation-triangle-fill"></i>
+                        <span id="festiveText"></span>
+                    </div>
+
+                    <p class="text-muted mb-1 fw-medium">Booking opens on:</p>
+                    <p id="bookingDateDisplay" class="result-date"></p>
+                    
+                    <p id="bookingTimeDisplay" class="text-muted mb-3 fw-medium" style="font-size: 0.95rem;">
+                        <i class="bi bi-clock me-1"></i> Time: 08:00 AM IST
+                    </p>
+                    
+                    <button type="button" id="downloadCalBtn" class="btn-calendar">
+                        <i class="bi bi-calendar-plus"></i> Add to Calendar
+                    </button>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        © COPYRIGHT RESERVED BY ASM
+    </footer>
+
+    <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: var(--glass-bg); color: var(--text-dark); border: 1px solid var(--card-border);">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>About This Site</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--btn-close-filter, none);"></button>
+                </div>
+                <div class="modal-body text-start pt-0">
+                    <p>Welcome to the <strong>Train Date Tracker</strong>.</p>
+                    <p>Indian Railways (IRCTC) allows passengers to book train tickets up to <strong>60 days in advance</strong>. Calculating this exact date manually can be confusing.</p>
+                    <p class="mb-0">This website serves as a simple utility to help you instantly calculate the exact date your ticket booking window opens, ensuring you never miss the chance to secure a confirmed seat.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="contactModal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content" style="background: var(--glass-bg); color: var(--text-dark); border: 1px solid var(--card-border);">
+                <div class="modal-header border-bottom-0">
+                    <h5 class="modal-title fw-bold"><i class="bi bi-person-lines-fill me-2"></i>Contact Us</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--btn-close-filter, none);"></button>
+                </div>
+                <div class="modal-body text-center py-4">
+                    <i class="bi bi-envelope-at" style="font-size: 3rem; color: var(--brand-color);"></i>
+                    <h5 class="mt-3 fw-bold">Have any problems?</h5>
+                    <p class="text-muted mb-3">Note: Any problem, please contact here.</p>
+                    <a href="mailto:adityamahajantech4@gmail.com" class="fs-6 fw-semibold text-decoration-none px-4 py-2 rounded-pill" style="background: var(--nav-btn-bg); color: var(--brand-color); border: 1px solid var(--nav-btn-border);">
+                        adityamahajantech4@gmail.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            
+            // --- Master List of 2026 Festivals ---
+            const holidays2026 = [
+                { date: "2026-03-03", name: "Holi" },
+                { date: "2026-10-18", name: "Durga Puja / Dussehra" },
+                { date: "2026-11-08", name: "Diwali" },
+                { date: "2026-11-14", name: "Chhath Puja" },
+                { date: "2026-12-25", name: "Christmas" }
+            ];
+
+            // --- 0. NEW: Calculate "Max Bookable Date Today" in JS instead of JSP ---
+            const maxDateElement = document.getElementById('maxBookableDateDisplay');
+            const today = new Date();
+            const bookableTillDate = new Date(today);
+            bookableTillDate.setDate(today.getDate() + 60); 
+
+            const displayOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+            maxDateElement.innerText = bookableTillDate.toLocaleDateString('en-US', displayOptions).replace(/,/g, '');
+
+            // 1. Theme Toggle Logic
+            const themeToggleBtn = document.getElementById('themeToggleBtn');
+            if(themeToggleBtn) {
+                themeToggleBtn.addEventListener('click', function() {
+                    document.body.classList.toggle('dark-mode');
+                    const themeIcon = document.getElementById('themeIcon');
+                    
+                    if (document.body.classList.contains('dark-mode')) {
+                        themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
+                        document.documentElement.style.setProperty('--btn-close-filter', 'invert(1)');
+                    } else {
+                        themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
+                        document.documentElement.style.setProperty('--btn-close-filter', 'none');
+                    }
+                });
+            }
+
+            // 2. Date Calculation, Holiday & Timezone Logic
+            const dateInput = document.getElementById('journeyDate');
+            let calculatedBookingDate = null; 
+
+            if(dateInput) {
+                const todayStr = new Date().toISOString().split('T')[0];
+                dateInput.setAttribute('min', todayStr);
+                
+                dateInput.addEventListener('change', function() {
+                    const journeyDateVal = this.value;
+                    const resultContainer = document.getElementById('resultContainer');
+                    const displayElement = document.getElementById('bookingDateDisplay');
+                    const warningBox = document.getElementById('festiveWarning');
+                    const festiveText = document.getElementById('festiveText');
+                    const timeDisplayElement = document.getElementById('bookingTimeDisplay');
+
+                    if (!journeyDateVal) {
+                        resultContainer.classList.remove('show');
+                        return;
+                    }
+
+                    const journeyDate = new Date(journeyDateVal);
+                    calculatedBookingDate = new Date(journeyDate);
+                    calculatedBookingDate.setDate(journeyDate.getDate() - 60);
+
+                    // Holiday Checking Logic 
+                    let foundHoliday = null;
+                    for(let i = 0; i < holidays2026.length; i++) {
+                        const hDate = new Date(holidays2026[i].date);
+                        const diffTime = Math.abs(journeyDate - hDate);
+                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
+                        
+                        if(diffDays <= 4) {
+                            foundHoliday = holidays2026[i].name;
+                            break;
+                        }
+                    }
+
+                    if(foundHoliday) {
+                       festiveText.innerText = "High Demand Expected! Your journey is near " + foundHoliday + ".";
+                        warningBox.style.display = 'flex';
+                    } else {
+                        warningBox.style.display = 'none';
+                    }
+
+                    const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+                    const formattedDate = calculatedBookingDate.toLocaleDateString('en-US', options).replace(/,/g, '');
+
+                    // NRI TIME ZONE LOGIC
+                    const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+                    const y = calculatedBookingDate.getFullYear();
+                    const m = String(calculatedBookingDate.getMonth() + 1).padStart(2, '0');
+                    const d = String(calculatedBookingDate.getDate()).padStart(2, '0');
+                    
+                    const bookingTimeIST = new Date(y + "-" + m + "-" + d + "T08:00:00+05:30");
+
+                    if (userTimeZone !== 'Asia/Calcutta' && userTimeZone !== 'Asia/Kolkata') {
+                        const localTimeStr = bookingTimeIST.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
+                        timeDisplayElement.innerHTML = '<i class="bi bi-clock me-1"></i> Time: 08:00 AM IST <br><span style="font-size: 0.85rem; color: var(--brand-color);">(Your local time: ' + localTimeStr + ')</span>';
+                    } else {
+                        timeDisplayElement.innerHTML = '<i class="bi bi-clock me-1"></i> Time: 08:00 AM IST';
+                    }
+
+                    resultContainer.classList.remove('show');
+                    setTimeout(function() {
+                        displayElement.innerText = formattedDate;
+                        resultContainer.classList.add('show');
+                    }, 50);
+                });
+            }
+
+            // 3. Add to Calendar Logic
+            const downloadCalBtn = document.getElementById('downloadCalBtn');
+            if(downloadCalBtn) {
+                downloadCalBtn.addEventListener('click', function() {
+                    if (!calculatedBookingDate) return;
+
+                    const year = calculatedBookingDate.getFullYear();
+                    const month = String(calculatedBookingDate.getMonth() + 1).padStart(2, '0');
+                    const day = String(calculatedBookingDate.getDate()).padStart(2, '0');
+                    
+                    const startDate = `${year}${month}${day}T023000Z`; 
+                    const endDate = `${year}${month}${day}T030000Z`;   
+
+                    const icsData = 
+                        "BEGIN:VCALENDAR\n" +
+                        "VERSION:2.0\n" +
+                        "BEGIN:VEVENT\n" +
+                        "DTSTART:" + startDate + "\n" +
+                        "DTEND:" + endDate + "\n" +
+                        "SUMMARY:Book IRCTC Train Ticket\n" +
+                        "DESCRIPTION:Reminder to book your train ticket. Booking opens at 8:00 AM IST.\n" +
+                        "END:VEVENT\n" +
+                        "END:VCALENDAR";
+
+                    const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
+                    const link = document.createElement('a');
+                    link.href = window.URL.createObjectURL(blob);
+                    link.setAttribute('download', 'TrainTicketReminder.ics');
+                    document.body.appendChild(link);
+                    link.click();
+                    document.body.removeChild(link);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
