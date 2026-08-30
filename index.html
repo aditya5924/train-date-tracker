@@ -78,7 +78,7 @@
         .navbar-custom {
             background: var(--glass-bg);
             border-bottom: 1px solid var(--card-border);
-            padding: 15px 40px;
+            padding: 10px 10px; /* Reduced side padding slightly */
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -87,17 +87,17 @@
         }
 
         .navbar-brand-title {
-            font-size: 1.25rem;
+            font-size: 0.85rem; /* Slightly smaller text to prevent wrapping on phones */
             font-weight: 700;
             color: var(--brand-color);
-            letter-spacing: 1px;
+            letter-spacing: 0.3px;
             margin: 0;
             text-transform: uppercase;
         }
 
         .nav-links {
             display: flex;
-            gap: 12px;
+            gap: 6px;
             align-items: center;
         }
 
@@ -106,9 +106,9 @@
             border: 1px solid var(--nav-btn-border);
             color: var(--text-dark);
             font-weight: 500;
-            font-size: 0.9rem;
-            padding: 8px 18px;
-            border-radius: 20px;
+            font-size: 0.8rem;
+            padding: 6px 10px;
+            border-radius: 15px;
             transition: all 0.2s ease;
             cursor: pointer;
         }
@@ -461,7 +461,7 @@
 
                     if(foundHoliday) {
                        festiveText.innerText = "High Demand Expected! Your journey is near " + foundHoliday + ".";
-                        warningBox.style.display = 'flex';
+                       warningBox.style.display = 'flex';
                     } else {
                         warningBox.style.display = 'none';
                     }
