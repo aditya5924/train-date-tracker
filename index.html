@@ -78,7 +78,7 @@
         .navbar-custom {
             background: var(--glass-bg);
             border-bottom: 1px solid var(--card-border);
-            padding: 10px 10px; /* Reduced side padding slightly */
+            padding: 10px 10px;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -87,7 +87,7 @@
         }
 
         .navbar-brand-title {
-            font-size: 0.85rem; /* Slightly smaller text to prevent wrapping on phones */
+            font-size: 0.85rem;
             font-weight: 700;
             color: var(--brand-color);
             letter-spacing: 0.3px;
@@ -339,6 +339,26 @@
                 </div>
             </div>
 
+            <!-- FAQ Section for AdSense Value Content -->
+            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
+                <h4 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Frequently Asked Questions</h4>
+                
+                <div class="mb-3">
+                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">When does IRCTC advance ticket booking open?</h6>
+                    <p class="text-muted small mb-0">Advance ticket booking typically opens at <strong>08:00 AM IST</strong> sharp on the day your booking window opens (60 days prior to the journey date).</p>
+                </div>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">Does the 60-day window include the journey date?</h6>
+                    <p class="text-muted small mb-0">No, the advance reservation period is calculated backwards starting from the day before your journey date.</p>
+                </div>
+
+                <div class="mb-3">
+                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">Why should I add reminders to my calendar?</h6>
+                    <p class="text-muted small mb-0">Popular trains sell out within minutes during peak holiday seasons. Setting a calendar reminder ensures you are logged in and ready right at 8:00 AM.</p>
+                </div>
+            </div>
+
         </div>
     </main>
 
@@ -346,17 +366,29 @@
         © COPYRIGHT RESERVED BY ASM
     </footer>
 
+    <!-- Rich About Modal for AdSense Policy Compliance -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content" style="background: var(--glass-bg); color: var(--text-dark); border: 1px solid var(--card-border);">
                 <div class="modal-header border-bottom-0">
-                    <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>About This Site</h5>
+                    <h5 class="modal-title fw-bold"><i class="bi bi-info-circle me-2"></i>About Train Date Tracker</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" style="filter: var(--btn-close-filter, none);"></button>
                 </div>
-                <div class="modal-body text-start pt-0">
-                    <p>Welcome to the <strong>Train Date Tracker</strong>.</p>
-                    <p>Indian Railways (IRCTC) allows passengers to book train tickets up to <strong>60 days in advance</strong>. Calculating this exact date manually can be confusing.</p>
-                    <p class="mb-0">This website serves as a simple utility to help you instantly calculate the exact date your ticket booking window opens, ensuring you never miss the chance to secure a confirmed seat.</p>
+                <div class="modal-body text-start pt-0" style="font-size: 0.95rem; line-height: 1.6;">
+                    <p>Welcome to <strong>Train Date Tracker</strong>, an independent utility web application designed to simplify railway travel planning.</p>
+                    
+                    <h6 class="fw-bold mt-3">Why Use This Calculator?</h6>
+                    <p>Indian Railways (IRCTC) permits passengers to book reserved train tickets up to <strong>60 days in advance</strong> (excluding the date of journey itself). Manually calculating this date—especially when factoring in varying month lengths, leap years, and holiday booking rushes—can lead to missed booking windows and unconfirmed tickets.</p>
+                    
+                    <h6 class="fw-bold mt-3">Key Features</h6>
+                    <ul class="text-muted ps-3">
+                        <li><strong>Instant 60-Day Window Calculation:</strong> Automatically figures out the exact date and time your booking opens.</li>
+                        <li><strong>Festival & Holiday Alerts:</strong> Automatically flags high-demand travel seasons like Holi, Diwali, Durga Puja, and Christmas.</li>
+                        <li><strong>Global Timezone Support:</strong> Automatically converts the 08:00 AM IST booking rush time into your local timezone if you are booking from abroad.</li>
+                        <li><strong>Calendar Integration:</strong> Generates instant `.ics` reminder files so you never miss a booking slot.</li>
+                    </ul>
+
+                    <p class="text-muted small mt-3 mb-0"><em>Disclaimer: This platform is an independent developer tool created to help travelers calculate dates efficiently and is not officially affiliated with IRCTC or Indian Railways.</em></p>
                 </div>
             </div>
         </div>
@@ -395,7 +427,7 @@
                 { date: "2026-12-25", name: "Christmas" }
             ];
 
-            // --- 0. NEW: Calculate "Max Bookable Date Today" in JS instead of JSP ---
+            // --- 0. Calculate "Max Bookable Date Today" in JS ---
             const maxDateElement = document.getElementById('maxBookableDateDisplay');
             const today = new Date();
             const bookableTillDate = new Date(today);
