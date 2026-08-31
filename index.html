@@ -14,7 +14,6 @@
     <meta property="og:title" content="IRCTC Train Booking Date Calculator">
     <meta property="og:description" content="Find out exactly when your 60-day train ticket booking window opens.">
     <meta property="og:type" content="website">
-    <meta name="google-site-verification" content="DwZJpKUB5lGc-dJsw1Vrosffs0O-04_fHEZkrXCbO5Q" />
     <link rel="icon" type="image/png" href="favicon.png">
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -271,6 +270,53 @@
             transition: all 0.3s ease;
         }
 
+        /* --- NEW TATKAL SECTION CSS --- */
+        .tatkal-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 12px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px var(--shadow-color);
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .tatkal-card:hover {
+            transform: translateY(-4px);
+            border-color: var(--brand-hover);
+        }
+
+        .tatkal-title {
+            font-size: 1.05rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+
+        .tatkal-time-info {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+        }
+
+        .timer-display {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: var(--brand-color);
+            letter-spacing: 0.5px;
+            margin: 5px 0;
+            font-feature-settings: "tnum";
+            font-variant-numeric: tabular-nums; /* Keeps numbers from shifting */
+        }
+
         /* --- FOOTER --- */
         .footer {
             background: var(--glass-bg);
@@ -345,7 +391,45 @@
                 </div>
             </div>
 
-            <!-- FAQ Section for AdSense Value Content -->
+            <!-- REDESIGNED TATKAL SECTION START -->
+            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
+                <h4 class="fw-bold mb-4" style="font-size: 1.1rem; color: var(--brand-color);">
+                    <i class="bi bi-stopwatch me-1"></i> Tatkal Booking Timers
+                </h4>
+                
+                <div class="row g-4">
+                    <!-- AC Classes Timer Card -->
+                    <div class="col-md-6">
+                        <div class="tatkal-card">
+                            <div class="tatkal-title">
+                                <i class="bi bi-snow2 text-info"></i> AC Classes
+                            </div>
+                            <div class="tatkal-time-info">Opens exactly at 10:00 AM</div>
+                            <div class="timer-display" id="acTimer">--h --m --s</div>
+                            <div class="text-muted small mt-1">Time remaining</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Non-AC Classes Timer Card -->
+                    <div class="col-md-6">
+                        <div class="tatkal-card">
+                            <div class="tatkal-title">
+                                <i class="bi bi-train-lightrail text-warning"></i> Non-AC (Sleeper)
+                            </div>
+                            <div class="tatkal-time-info">Opens exactly at 11:00 AM</div>
+                            <div class="timer-display" id="nonAcTimer">--h --m --s</div>
+                            <div class="text-muted small mt-1">Time remaining</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-4 p-3 rounded" style="background: var(--inner-box-bg); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem;">
+                    <strong>💡 Quick Tip:</strong> Tatkal booking starts 1 day prior to the journey date from the train's originating station.
+                </div>
+            </div>
+            <!-- REDESIGNED TATKAL SECTION END -->
+
+            <!-- FAQ Section -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
                 <h4 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Frequently Asked Questions</h4>
                 
@@ -372,7 +456,7 @@
         © COPYRIGHT RESERVED BY ASM
     </footer>
 
-    <!-- Rich About Modal for AdSense Policy Compliance -->
+    <!-- Modals (About & Contact) -->
     <div class="modal fade" id="aboutModal" tabindex="-1" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg">
             <div class="modal-content" style="background: var(--glass-bg); color: var(--text-dark); border: 1px solid var(--card-border);">
@@ -563,6 +647,41 @@
                     document.body.removeChild(link);
                 });
             }
+
+            // --- 4. NEW TATKAL TIMER LOGIC ---
+            function updateTatkalTimers() {
+                const now = new Date();
+                
+                function getTimeLeft(targetHour) {
+                    let target = new Date(now);
+                    target.setHours(targetHour, 0, 0, 0);
+                    
+                    // Agar aaj ka time nikal gaya, toh target next day set karo
+                    if (now > target) {
+                        target.setDate(target.getDate() + 1);
+                    }
+                    
+                    const diff = target - now;
+                    
+                    // Format single digits with leading zero for better digital clock look
+                    const h = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
+                    const m = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
+                    const s = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
+                    
+                    return `${h}h ${m}m ${s}s`;
+                }
+
+                const acTimer = document.getElementById('acTimer');
+                const nonAcTimer = document.getElementById('nonAcTimer');
+                
+                if (acTimer) acTimer.innerText = getTimeLeft(10); // 10:00 AM
+                if (nonAcTimer) nonAcTimer.innerText = getTimeLeft(11); // 11:00 AM
+            }
+            
+            updateTatkalTimers();
+            setInterval(updateTatkalTimers, 1000);
+            // ------------------------------------
+
         });
     </script>
 </body>
