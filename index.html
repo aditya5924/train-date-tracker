@@ -5,16 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- SEO Meta Tags -->
-    <title>IRCTC Train Booking Date Calculator | 60 Days Advance Tracker</title>
+    <title>IRCTC Train Booking Date Calculator | 60 Day Tracker</title>
     <meta name="description" content="Instantly calculate the exact 60-day advance booking date for your IRCTC train journey. Add reminders to your calendar and never miss a confirmed ticket.">
     <meta name="keywords" content="IRCTC advance booking calculator, 60 days train ticket booking date, train date tracker, Indian Railways booking time, confirmed train ticket, holiday train travel">
     <meta name="author" content="ASM">
 
-    <!-- Social Media Sharing Tags (Makes it look good if shared on WhatsApp/Facebook) -->
+    <!-- Canonical URL (To fix duplicate content warning) -->
+    <link rel="canonical" href="https://train-date-tracker.vercel.app/" />
+
+    <!-- Performance Fix (Preload background image for FCP & LCP) -->
+    <link rel="preload" as="image" href="https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop">
+
+    <!-- Social Media Sharing Tags & Twitter Cards -->
     <meta property="og:title" content="IRCTC Train Booking Date Calculator">
     <meta property="og:description" content="Find out exactly when your 60-day train ticket booking window opens.">
     <meta property="og:type" content="website">
+    <meta property="og:image" content="https://train-date-tracker.vercel.app/preview-image.jpg">
+    
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="IRCTC Train Booking Date Calculator">
+    <meta name="twitter:description" content="Instantly calculate the exact 60-day advance booking date for your IRCTC train journey.">
+    <meta name="twitter:image" content="https://train-date-tracker.vercel.app/preview-image.jpg">
+    
     <link rel="icon" type="image/png" href="favicon.png">
+
+    <!-- Schema.org Markup for better Search Engine understanding -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "IRCTC Train Date Tracker",
+      "url": "https://train-date-tracker.vercel.app/",
+      "description": "Instantly calculate the exact 60-day advance booking date for IRCTC trains with live Tatkal timers.",
+      "applicationCategory": "UtilityApplication",
+      "operatingSystem": "All"
+    }
+    </script>
     
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -398,9 +424,9 @@
 
             <!-- REDESIGNED TATKAL SECTION START -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h4 class="fw-bold mb-4" style="font-size: 1.1rem; color: var(--brand-color);">
+                <h3 class="fw-bold mb-4" style="font-size: 1.1rem; color: var(--brand-color);">
                     <i class="bi bi-stopwatch me-1"></i> Tatkal Booking Timers
-                </h4>
+                </h3>
                 
                 <div class="row g-4">
                     <div class="col-md-6">
@@ -434,9 +460,9 @@
 
          <!-- NEW: REFUND & CANCELLATION GUIDE START -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h4 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
+                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
                     <i class="bi bi-receipt me-1"></i> Cancellation & Refund Guide
-                </h4>
+                </h3>
                 
                 <div class="accordion" id="refundAccordion">
                     
@@ -487,20 +513,20 @@
 
             <!-- FAQ Section -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h4 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Frequently Asked Questions</h4>
+                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Frequently Asked Questions</h3>
                 
                 <div class="mb-3">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">When does IRCTC advance ticket booking open?</h6>
+                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">When does IRCTC advance ticket booking open?</h4>
                     <p class="text-muted small mb-0">Advance ticket booking typically opens at <strong>08:00 AM IST</strong> sharp on the day your booking window opens (60 days prior to the journey date).</p>
                 </div>
 
                 <div class="mb-3">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">Does the 60-day window include the journey date?</h6>
+                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">Does the 60-day window include the journey date?</h4>
                     <p class="text-muted small mb-0">No, the advance reservation period is calculated backwards starting from the day before your journey date.</p>
                 </div>
 
                 <div class="mb-3">
-                    <h6 class="fw-bold mb-1" style="font-size: 0.95rem;">Why should I add reminders to my calendar?</h6>
+                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">Why should I add reminders to my calendar?</h4>
                     <p class="text-muted small mb-0">Popular trains sell out within minutes during peak holiday seasons. Setting a calendar reminder ensures you are logged in and ready right at 8:00 AM.</p>
                 </div>
             </div>
@@ -523,10 +549,10 @@
                 <div class="modal-body text-start pt-0" style="font-size: 0.95rem; line-height: 1.6;">
                     <p>Welcome to <strong>Train Date Tracker</strong>, an independent utility web application designed to simplify railway travel planning.</p>
                     
-                    <h6 class="fw-bold mt-3">Why Use This Calculator?</h6>
+                    <h4 class="fw-bold mt-3" style="font-size: 1rem;">Why Use This Calculator?</h4>
                     <p>Indian Railways (IRCTC) permits passengers to book reserved train tickets up to <strong>60 days in advance</strong> (excluding the date of journey itself). Manually calculating this date—especially when factoring in varying month lengths, leap years, and holiday booking rushes—can lead to missed booking windows and unconfirmed tickets.</p>
                     
-                    <h6 class="fw-bold mt-3">Key Features</h6>
+                    <h4 class="fw-bold mt-3" style="font-size: 1rem;">Key Features</h4>
                     <ul class="text-muted ps-3">
                         <li><strong>Instant 60-Day Window Calculation:</strong> Automatically figures out the exact date and time your booking opens.</li>
                         <li><strong>Festival & Holiday Alerts:</strong> Automatically flags high-demand travel seasons like Holi, Diwali, Durga Puja, and Christmas.</li>
