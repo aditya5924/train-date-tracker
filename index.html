@@ -19,13 +19,13 @@
       gtag('config', 'G-M7SH0CQX18');
     </script>
 
-    <!-- Canonical URL (To fix duplicate content warning) -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="https://train-date-tracker.vercel.app/" />
 
-    <!-- Performance Fix (Preload background image for FCP & LCP) -->
+    <!-- Performance Fix -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop">
 
-    <!-- Social Media Sharing Tags & Twitter Cards -->
+    <!-- Social Media Sharing Tags -->
     <meta property="og:title" content="IRCTC Train Booking Date Calculator">
     <meta property="og:description" content="Find out exactly when your 60-day train ticket booking window opens.">
     <meta property="og:type" content="website">
@@ -38,7 +38,7 @@
     
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Schema.org Markup for better Search Engine understanding -->
+    <!-- Schema.org Markup -->
     <script type="application/ld+json">
     {
       "@context": "https://schema.org",
@@ -71,7 +71,6 @@
             --nav-btn-border: rgba(15, 23, 42, 0.1);
             --shadow-color: rgba(0, 0, 0, 0.08);
             
-            /* Festive Alert Light Mode */
             --alert-bg: #fee2e2;
             --alert-text: #991b1b;
             --alert-border: #f87171;
@@ -86,12 +85,11 @@
             --text-dark: #f8fafc;
             --text-muted: #94a3b8;
             --brand-color: #3b82f6;
-            --brand-hover: #60a5fa;
+            --brand-hover: #fcfdff;
             --nav-btn-bg: rgba(255, 255, 255, 0.1);
             --nav-btn-border: rgba(255, 255, 255, 0.2);
             --shadow-color: rgba(0, 0, 0, 0.4);
             
-            /* Festive Alert Dark Mode */
             --alert-bg: rgba(127, 29, 29, 0.4);
             --alert-text: #fca5a5;
             --alert-border: #991b1b;
@@ -373,6 +371,22 @@
             from { opacity: 0; transform: translateY(-10px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* --- DARK MODE TEXT FIX --- */
+        body.dark-mode p, 
+        body.dark-mode li, 
+        body.dark-mode h1, 
+        body.dark-mode h2, 
+        body.dark-mode h3, 
+        body.dark-mode h4, 
+        body.dark-mode .accordion-button, 
+        body.dark-mode .accordion-body {
+            color: var(--text-dark) !important;
+        }
+
+        body.dark-mode .text-muted {
+            color: var(--text-muted) !important;
+        }
     </style>
     
     <!-- Google AdSense Verification Code -->
@@ -537,7 +551,7 @@
                 </div>
             </div>
 
-            <!-- DETAILED GUIDE FOR ADSENSE LOW-VALUE FIX -->
+            <!-- DETAILED GUIDE -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
                 <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Complete Guide to IRCTC Advance Train Ticket Booking (60-Day Rule)</h3>
                 <p class="text-muted small mb-3">
@@ -549,7 +563,7 @@
                 </p>
             </div>
 
-            <!-- NEW: PRO TIPS SECTION -->
+            <!-- PRO TIPS SECTION -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
                 <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
                     <i class="bi bi-lightning-charge me-1"></i> Pro Tips for Faster IRCTC Ticket Booking
@@ -563,7 +577,7 @@
                 </ul>
             </div>
 
-            <!-- NEW: HOW TO USE SECTION -->
+            <!-- HOW TO USE SECTION -->
             <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
                 <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
                     <i class="bi bi-question-circle me-1"></i> How to Use the Train Date Tracker
@@ -622,10 +636,8 @@
                     
                     if (document.body.classList.contains('dark-mode')) {
                         themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
-                        document.documentElement.style.setProperty('--btn-close-filter', 'invert(1)');
                     } else {
                         themeIcon.classList.replace('bi-sun-fill', 'bi-moon-fill');
-                        document.documentElement.style.setProperty('--btn-close-filter', 'none');
                     }
                 });
             }
