@@ -13,6 +13,14 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://train-date-tracker.vercel.app/refund-calculator.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://train-date-tracker.vercel.app/seat-map-layout.html</loc>
+    <priority>0.9</priority>
+  </url>
+  <url>
     <loc>https://train-date-tracker.vercel.app/about.html</loc>
     <priority>0.5</priority>
   </url>
