@@ -3,41 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Terms & Conditions - Train Date Tracker</title>
+    <title>Terms & Conditions | Train Date Tracker</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M7SH0CQX18"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-M7SH0CQX18');
+    </script>
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
     <style>
-        body { font-family: 'Inter', sans-serif; background-color: #f8fafc; color: #0f172a; line-height: 1.6; }
-        .glass-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 16px; padding: 40px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); max-width: 800px; margin: 40px auto; }
-        h1 { font-size: 1.8rem; font-weight: 700; color: #1e40af; margin-bottom: 20px; border-bottom: 2px solid #f1f5f9; padding-bottom: 10px; }
-        h2 { font-size: 1.2rem; font-weight: 600; margin-top: 25px; color: #334155; }
-        p { color: #475569; font-size: 0.95rem; }
-        .nav-link { color: #1e40af; text-decoration: none; font-weight: 600; display: inline-block; margin-bottom: 20px;}
-        .nav-link:hover { text-decoration: underline; }
+        :root { --bg-overlay-1: rgba(255, 255, 255, 0.70); --bg-overlay-2: rgba(240, 245, 250, 0.65); --glass-bg: rgba(255, 255, 255, 0.90); --card-border: rgba(226, 232, 240, 0.8); --text-dark: #0f172a; --text-muted: #475569; --brand-color: #1e40af; --nav-btn-bg: rgba(15, 23, 42, 0.05); --nav-btn-border: rgba(15, 23, 42, 0.1); }
+        body.dark-mode { --bg-overlay-1: rgba(15, 23, 42, 0.70); --bg-overlay-2: rgba(2, 6, 23, 0.75); --glass-bg: rgba(30, 41, 59, 0.85); --card-border: rgba(51, 65, 85, 0.8); --text-dark: #f8fafc; --text-muted: #94a3b8; --brand-color: #3b82f6; --nav-btn-bg: rgba(255, 255, 255, 0.1); --nav-btn-border: rgba(255, 255, 255, 0.2); }
+        body { font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: var(--text-dark); background: linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)), url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed; background-size: cover; transition: background 0.4s ease, color 0.4s ease; }
+        .navbar-custom { background: var(--glass-bg); border-bottom: 1px solid var(--card-border); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { background: var(--nav-btn-bg); border: 1px solid var(--nav-btn-border); color: var(--text-dark); padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+        .legal-card { background: var(--glass-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 40px; max-width: 800px; width: 100%; margin: 40px auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1, h2 { color: var(--brand-color); font-weight: 700; }
+        p, li { color: var(--text-muted); line-height: 1.8; font-size: 1rem; }
+        body.dark-mode p, body.dark-mode li { color: var(--text-dark) !important; }
+        .footer { background: var(--glass-bg); border-top: 1px solid var(--card-border); text-align: center; padding: 15px; margin-top: auto; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="glass-card">
-            <a href="index.html" class="nav-link">&larr; Back to Calculator</a>
-            <h1>Terms & Conditions</h1>
-            <p><strong>Last Updated: September 2026</strong></p>
-            
-            <h2>1. Acceptance of Terms</h2>
-            <p>By accessing and using Train Date Tracker (train-date-tracker.vercel.app), you accept and agree to be bound by the terms and provision of this agreement.</p>
-            
-            <h2>2. Independent Utility Disclaimer</h2>
-            <p><strong>Crucial Notice:</strong> Train Date Tracker is an independent, privately-developed utility tool. We are NOT affiliated, associated, authorized, endorsed by, or in any way officially connected with Indian Railways, IRCTC, or any government entity. The official IRCTC website can be found at irctc.co.in.</p>
-            
-            <h2>3. Accuracy of Information</h2>
-            <p>While we strive to provide accurate 60-day booking calculations and Tatkal timers, we cannot guarantee 100% accuracy due to potential sudden changes in railway policies. Users are advised to cross-verify booking dates with official sources. We are not liable for any missed bookings, financial loss, or travel disruptions.</p>
-            
-            <h2>4. Usage Restrictions</h2>
-            <p>This website is intended for personal, non-commercial use to assist in calculating travel dates. You may not use this tool for automated scraping, bulk data collection, or any malicious purposes.</p>
-            
-            <h2>5. Changes to Terms</h2>
-            <p>We reserve the right to modify these terms at any time. Your continued use of the site after such changes constitutes your acceptance of the new Terms & Conditions.</p>
+    <nav class="navbar-custom">
+        <a href="index.html" class="text-decoration-none" style="color: var(--brand-color); font-weight: 700;">
+            <i class="bi bi-arrow-left me-1"></i> BACK TO CALCULATOR
+        </a>
+        <button type="button" id="themeToggleBtn" class="nav-btn" style="border-radius: 50%;"><i id="themeIcon" class="bi bi-moon-fill"></i></button>
+    </nav>
+
+    <main class="container">
+        <div class="legal-card">
+            <h1 class="mb-4">Terms and Conditions</h1>
+            <p>Welcome to the Train Date Tracker.</p>
+            <p>These terms and conditions outline the rules and regulations for the use of our website, located at train-date-tracker.vercel.app. By accessing this website we assume you accept these terms and conditions. Do not continue to use the Train Date Tracker if you do not agree to take all of the terms and conditions stated on this page.</p>
+
+            <h2 class="h5 mt-4">1. General Information</h2>
+            <p>The information provided on the Train Date Tracker is for general informational and utility purposes only. While we endeavor to keep the calculations (based on the 60-day Advance Reservation Period) up to date and correct, we make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability with respect to the website or the information.</p>
+
+            <h2 class="h5 mt-4">2. Independent Entity</h2>
+            <p>We are a completely independent, privately developed utility platform. We are NOT officially endorsed by, affiliated with, or operated by the Indian Railway Catering and Tourism Corporation (IRCTC), Indian Railways, or any government body. All ticketing rules and final reservations must be made strictly through the official IRCTC portal.</p>
+
+            <h2 class="h5 mt-4">3. Limitation of Liability</h2>
+            <p>In no event will we be liable for any loss or damage including without limitation, indirect or consequential loss or damage, or any loss or damage whatsoever arising from loss of tickets, missed bookings, or lost data arising out of, or in connection with, the use of this website. Users are advised to double-check their booking dates on the official IRCTC portal.</p>
+
+            <h2 class="h5 mt-4">4. External Links</h2>
+            <p>Through this website, you may be able to link to other websites (including Google AdSense advertisements) which are not under our control. We have no control over the nature, content, and availability of those sites. The inclusion of any links does not necessarily imply a recommendation or endorse the views expressed within them.</p>
         </div>
-    </div>
+    </main>
+
+    <footer class="footer">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="about.html" class="text-muted text-decoration-none small">About Us</a>
+            <a href="privacy.html" class="text-muted text-decoration-none small">Privacy Policy</a>
+        </div>
+    </footer>
+
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        themeToggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.classList.toggle('bi-moon-fill');
+            themeIcon.classList.toggle('bi-sun-fill');
+        });
+    </script>
 </body>
 </html>
