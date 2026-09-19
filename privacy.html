@@ -3,121 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Privacy Policy - Train Date Tracker</title>
+    <title>Privacy Policy | Train Date Tracker</title>
+    
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-M7SH0CQX18"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-M7SH0CQX18');
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
     <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f6f8;
-            color: #333333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        .header {
-            background-color: #ffffff;
-            border-bottom: 1px solid #e0e0e0;
-            padding: 15px 30px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        .header h1 {
-            font-size: 16px;
-            color: #1a1a1a;
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        .header a {
-            color: #2563eb;
-            text-decoration: none;
-            font-size: 14px;
-        }
-        .header a:hover {
-            text-decoration: underline;
-        }
-        .container {
-            max-width: 750px;
-            margin: 40px auto;
-            background: #ffffff;
-            border: 1px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 40px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.02);
-        }
-        h2 {
-            font-size: 24px;
-            color: #1a1a1a;
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-        .date {
-            font-size: 13px;
-            color: #666666;
-            margin-bottom: 25px;
-            border-bottom: 1px solid #eeeeee;
-            padding-bottom: 15px;
-        }
-        h3 {
-            font-size: 16px;
-            color: #1a1a1a;
-            margin-top: 25px;
-            margin-bottom: 8px;
-        }
-        p {
-            font-size: 14px;
-            color: #4a4a4a;
-            margin-bottom: 15px;
-        }
-        .footer {
-            text-align: center;
-            font-size: 12px;
-            color: #777777;
-            padding: 20px;
-            background-color: #ffffff;
-            border-top: 1px solid #e0e0e0;
-            margin-top: 60px;
-        }
+        :root { --bg-overlay-1: rgba(255, 255, 255, 0.70); --bg-overlay-2: rgba(240, 245, 250, 0.65); --glass-bg: rgba(255, 255, 255, 0.90); --card-border: rgba(226, 232, 240, 0.8); --text-dark: #0f172a; --text-muted: #475569; --brand-color: #1e40af; --nav-btn-bg: rgba(15, 23, 42, 0.05); --nav-btn-border: rgba(15, 23, 42, 0.1); }
+        body.dark-mode { --bg-overlay-1: rgba(15, 23, 42, 0.70); --bg-overlay-2: rgba(2, 6, 23, 0.75); --glass-bg: rgba(30, 41, 59, 0.85); --card-border: rgba(51, 65, 85, 0.8); --text-dark: #f8fafc; --text-muted: #94a3b8; --brand-color: #3b82f6; --nav-btn-bg: rgba(255, 255, 255, 0.1); --nav-btn-border: rgba(255, 255, 255, 0.2); }
+        body { font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: var(--text-dark); background: linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)), url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed; background-size: cover; transition: background 0.4s ease, color 0.4s ease; }
+        .navbar-custom { background: var(--glass-bg); border-bottom: 1px solid var(--card-border); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; }
+        .nav-btn { background: var(--nav-btn-bg); border: 1px solid var(--nav-btn-border); color: var(--text-dark); padding: 6px 12px; border-radius: 15px; text-decoration: none; font-size: 0.85rem; font-weight: 500; }
+        .legal-card { background: var(--glass-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 40px; max-width: 800px; width: 100%; margin: 40px auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        h1, h2 { color: var(--brand-color); font-weight: 700; }
+        p, li { color: var(--text-muted); line-height: 1.8; font-size: 1rem; }
+        body.dark-mode p, body.dark-mode li { color: var(--text-dark) !important; }
+        .footer { background: var(--glass-bg); border-top: 1px solid var(--card-border); text-align: center; padding: 15px; margin-top: auto; }
     </style>
 </head>
 <body>
+    <nav class="navbar-custom">
+        <a href="index.html" class="text-decoration-none" style="color: var(--brand-color); font-weight: 700;">
+            <i class="bi bi-arrow-left me-1"></i> BACK TO CALCULATOR
+        </a>
+        <button type="button" id="themeToggleBtn" class="nav-btn" style="border-radius: 50%;"><i id="themeIcon" class="bi bi-moon-fill"></i></button>
+    </nav>
 
-    <div class="header">
-        <h1>Train Date Tracker</h1>
-        <a href="index.html">&larr; Back to Calculator</a>
-    </div>
+    <main class="container">
+        <div class="legal-card">
+            <h1 class="mb-4">Privacy Policy</h1>
+            <p><strong>Last Updated: September 2026</strong></p>
+            <p>At the Train Date Tracker (accessible from train-date-tracker.vercel.app), one of our main priorities is the privacy of our visitors. This Privacy Policy document contains types of information that is collected and recorded by Train Date Tracker and how we use it.</p>
 
-    <div class="container">
-        <h2>Privacy Policy</h2>
-        <div class="date">Last updated: September 2026</div>
+            <h2 class="h5 mt-4">1. Information We Collect</h2>
+            <p>We do not collect any Personally Identifiable Information (PII) such as names, phone numbers, or email addresses unless you voluntarily provide them by contacting us directly. The core functionality of our calculator operates entirely on your browser (client-side) and does not store the dates you input on our servers.</p>
 
-        <p>
-            Welcome to <strong>Train Date Tracker</strong> (train-date-tracker.vercel.app). Your privacy is important to us, and this page outlines how information is handled on our platform.
-        </p>
+            <h2 class="h5 mt-4">2. Log Files and Analytics</h2>
+            <p>Train Date Tracker follows a standard procedure of using log files and Google Analytics. These files log visitors when they visit websites. The information collected by log files includes internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, and tracking users' movement on the website.</p>
 
-        <h3>1. Google Analytics</h3>
-        <p>
-            We use Google Analytics to track site traffic, page views, and general usage patterns. This helps us understand how visitors use the tool and improve its performance. Google Analytics collects standard anonymous data through cookies, but it never tracks your personal identity.
-        </p>
+            <h2 class="h5 mt-4">3. Google AdSense and DoubleClick DART Cookie</h2>
+            <p>Google is one of a third-party vendor on our site. It also uses cookies, known as DART cookies, to serve ads to our site visitors based upon their visit to our site and other sites on the internet. However, visitors may choose to decline the use of DART cookies by visiting the Google ad and content network Privacy Policy at the following URL: <a href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a>.</p>
 
-        <h3>2. Google AdSense & Cookies</h3>
-        <p>
-            Google, as a third-party vendor, uses cookies to serve advertisements on our website. Google's use of advertising cookies enables it and its partners to display ads based on your visits to this site and other websites on the internet. You can manage or disable personalized advertising anytime via your browser settings.
-        </p>
+            <h2 class="h5 mt-4">4. Consent</h2>
+            <p>By using our website, you hereby consent to our Privacy Policy and agree to its Terms and Conditions.</p>
+        </div>
+    </main>
 
-        <h3>3. Consent</h3>
-        <p>
-            By using our website, you hereby consent to our Privacy Policy and agree to its terms.
-        </p>
+    <footer class="footer">
+        <div class="d-flex justify-content-center gap-3 flex-wrap">
+            <a href="about.html" class="text-muted text-decoration-none small">About Us</a>
+            <a href="terms.html" class="text-muted text-decoration-none small">Terms</a>
+        </div>
+    </footer>
 
-        <p style="margin-top: 30px;">
-            <a href="index.html" style="color: #2563eb; text-decoration: none; font-size: 14px;">&larr; Return to Home Page</a>
-        </p>
-    </div>
-
-    <div class="footer">
-        &copy; 2026 Train Date Tracker. All rights reserved.
-    </div>
-
+    <script>
+        const themeToggleBtn = document.getElementById('themeToggleBtn');
+        themeToggleBtn.addEventListener('click', function() {
+            document.body.classList.toggle('dark-mode');
+            const themeIcon = document.getElementById('themeIcon');
+            themeIcon.classList.toggle('bi-moon-fill');
+            themeIcon.classList.toggle('bi-sun-fill');
+        });
+    </script>
 </body>
 </html>
