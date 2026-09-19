@@ -167,6 +167,14 @@
         body.dark-mode .dropdown-item-custom { color: #f8fafc; }
         body.dark-mode .dropdown-item-custom:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--brand-hover); }
 
+        /* Mobile Fix for Dropdown */
+        @media (max-width: 768px) {
+            .dropdown-menu-custom {
+                left: auto !important;
+                right: 0 !important;
+            }
+        }
+
         /* --- MAIN CONTENT --- */
         .main-container {
             flex: 1;
