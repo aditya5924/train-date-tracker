@@ -118,6 +118,8 @@
             align-items: center;
             backdrop-filter: blur(10px);
             transition: all 0.4s ease;
+            position: relative; /* Z-INDEX FIX */
+            z-index: 9999;      /* Z-INDEX FIX */
         }
 
         .navbar-brand-title {
@@ -161,7 +163,7 @@
         }
 
         /* --- DROPDOWN MENU STYLING --- */
-        .dropdown-menu-custom { background-color: var(--glass-bg); border: 1px solid var(--card-border); backdrop-filter: blur(10px); border-radius: 12px; padding: 8px 0; box-shadow: 0 10px 25px var(--shadow-color); left: 0 !important; right: auto !important; margin-top: 12px !important; }
+        .dropdown-menu-custom { background-color: var(--glass-bg); border: 1px solid var(--card-border); backdrop-filter: blur(10px); border-radius: 12px; padding: 8px 0; box-shadow: 0 10px 25px var(--shadow-color); left: 0 !important; right: auto !important; margin-top: 12px !important; z-index: 10000 !important; /* Z-INDEX FIX */ }
         .dropdown-item-custom { color: var(--text-dark); font-weight: 500; font-size: 0.9rem; padding: 8px 20px; transition: all 0.2s ease; display: flex; align-items: center; gap: 10px; }
         .dropdown-item-custom:hover { background-color: var(--nav-btn-bg); color: var(--brand-color); }
         body.dark-mode .dropdown-item-custom { color: #f8fafc; }
@@ -182,6 +184,8 @@
             justify-content: center;
             align-items: center;
             padding: 40px 20px;
+            position: relative; /* Context control */
+            z-index: 1;         /* Stays below navbar */
         }
 
         .glass-card {
