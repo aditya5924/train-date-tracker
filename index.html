@@ -162,20 +162,31 @@
             justify-content: center;
         }
 
-        /* --- DROPDOWN MENU STYLING --- */
-        .dropdown-menu-custom { background-color: var(--glass-bg); border: 1px solid var(--card-border); backdrop-filter: blur(10px); border-radius: 12px; padding: 8px 0; box-shadow: 0 10px 25px var(--shadow-color); left: 0 !important; right: auto !important; margin-top: 12px !important; z-index: 10000 !important; /* Z-INDEX FIX */ }
-        .dropdown-item-custom { color: var(--text-dark); font-weight: 500; font-size: 0.9rem; padding: 8px 20px; transition: all 0.2s ease; display: flex; align-items: center; gap: 10px; }
+        /* --- PREMIUM DROPDOWN MENU STYLING --- */
+        .dropdown-menu-custom { 
+            background-color: var(--glass-bg); 
+            border: 1px solid var(--card-border); 
+            backdrop-filter: blur(12px); 
+            border-radius: 12px; 
+            padding: 10px 0; 
+            box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
+            margin-top: 15px !important; 
+            min-width: 240px; 
+            z-index: 10000; 
+        }
+        .dropdown-item-custom { 
+            color: var(--text-dark); 
+            font-weight: 500; 
+            font-size: 0.95rem; 
+            padding: 12px 20px; 
+            transition: all 0.2s ease; 
+            display: flex; 
+            align-items: center; 
+            gap: 12px; 
+        }
         .dropdown-item-custom:hover { background-color: var(--nav-btn-bg); color: var(--brand-color); }
         body.dark-mode .dropdown-item-custom { color: #f8fafc; }
         body.dark-mode .dropdown-item-custom:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--brand-hover); }
-
-        /* Mobile Fix for Dropdown */
-        @media (max-width: 768px) {
-            .dropdown-menu-custom {
-                left: auto !important;
-                right: 0 !important;
-            }
-        }
 
         /* --- MAIN CONTENT --- */
         .main-container {
@@ -427,7 +438,7 @@
                 <button class="nav-btn dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--brand-color); color: white; border: none; font-weight: 600;">
                     <i class="bi bi-grid-fill me-1"></i> Tools
                 </button>
-                <ul class="dropdown-menu dropdown-menu-custom">
+                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
                     <li><a class="dropdown-item dropdown-item-custom" href="refund-calculator.html"><i class="bi bi-currency-rupee text-success"></i> Refund Calculator</a></li>
                     <li><a class="dropdown-item dropdown-item-custom" href="seat-map-layout.html"><i class="bi bi-person-workspace text-info"></i> Seat & Berth Map</a></li>
                     <li><hr class="dropdown-divider" style="border-color: var(--card-border);"></li>
