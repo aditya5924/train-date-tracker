@@ -4,10 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <!-- SEO Meta Tags -->
-    <title>IRCTC Train Booking Date Calculator | 60 Day Tracker</title>
-    <meta name="description" content="Instantly calculate the exact 60-day advance booking date for your IRCTC train journey. Add reminders to your calendar and never miss a confirmed ticket.">
-    <meta name="keywords" content="IRCTC advance booking calculator, 60 days train ticket booking date, train date tracker, Indian Railways booking time, confirmed train ticket, holiday train travel">
+    <title>Train Date Tracker | Free IRCTC Planning Tools & Calculators</title>
+    <meta name="description" content="Free Indian Railway utility tools. Instantly calculate IRCTC 60-day advance booking dates, cancellation refunds, berth layouts, and explore comprehensive travel guides.">
+    <meta name="keywords" content="IRCTC advance booking calculator, train refund calculator, train date tracker, 60 days train ticket booking, Indian Railways booking rules, RAC vs Waitlist, Vikalp scheme, Premium Tatkal">
     <meta name="author" content="Aditya Mahajan">
     
     <!-- Google tag (gtag.js) -->
@@ -19,38 +18,10 @@
       gtag('config', 'G-M7SH0CQX18');
     </script>
 
-    <!-- Canonical URL -->
     <link rel="canonical" href="https://train-date-tracker.vercel.app/" />
-
-    <!-- Performance Fix -->
     <link rel="preload" as="image" href="https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop">
-
-    <!-- Social Media Sharing Tags -->
-    <meta property="og:title" content="IRCTC Train Booking Date Calculator">
-    <meta property="og:description" content="Find out exactly when your 60-day train ticket booking window opens.">
-    <meta property="og:type" content="website">
-    <meta property="og:image" content="https://train-date-tracker.vercel.app/preview-image.jpg">
-    
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="IRCTC Train Booking Date Calculator">
-    <meta name="twitter:description" content="Instantly calculate the exact 60-day advance booking date for your IRCTC train journey.">
-    <meta name="twitter:image" content="https://train-date-tracker.vercel.app/preview-image.jpg">
-    
     <link rel="icon" type="image/png" href="favicon.png">
 
-    <!-- Schema.org Markup -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "WebApplication",
-      "name": "IRCTC Train Date Tracker",
-      "url": "https://train-date-tracker.vercel.app/",
-      "description": "Instantly calculate the exact 60-day advance booking date for IRCTC trains with live Tatkal timers.",
-      "applicationCategory": "UtilityApplication",
-      "operatingSystem": "All"
-    }
-    </script>
-    
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
@@ -58,11 +29,11 @@
     <style>
         /* --- THEME VARIABLES --- */
         :root {
-            --bg-overlay-1: rgba(255, 255, 255, 0.70);
-            --bg-overlay-2: rgba(240, 245, 250, 0.65);
+            --bg-overlay-1: rgba(255, 255, 255, 0.75);
+            --bg-overlay-2: rgba(240, 245, 250, 0.70);
             --glass-bg: rgba(255, 255, 255, 0.85);
-            --card-border: rgba(226, 232, 240, 0.8);
-            --inner-box-bg: rgba(248, 250, 252, 0.85);
+            --card-border: rgba(226, 232, 240, 0.9);
+            --inner-box-bg: rgba(248, 250, 252, 0.9);
             --text-dark: #0f172a;
             --text-muted: #475569;
             --brand-color: #1e40af;
@@ -70,358 +41,121 @@
             --nav-btn-bg: rgba(15, 23, 42, 0.05);
             --nav-btn-border: rgba(15, 23, 42, 0.1);
             --shadow-color: rgba(0, 0, 0, 0.08);
-            
             --alert-bg: #fee2e2;
             --alert-text: #991b1b;
             --alert-border: #f87171;
         }
 
         body.dark-mode {
-            --bg-overlay-1: rgba(15, 23, 42, 0.70);
-            --bg-overlay-2: rgba(2, 6, 23, 0.75);
-            --glass-bg: rgba(30, 41, 59, 0.80);
-            --card-border: rgba(51, 65, 85, 0.8);
-            --inner-box-bg: rgba(15, 23, 42, 0.5);
+            --bg-overlay-1: rgba(15, 23, 42, 0.75);
+            --bg-overlay-2: rgba(2, 6, 23, 0.80);
+            --glass-bg: rgba(30, 41, 59, 0.85);
+            --card-border: rgba(51, 65, 85, 0.9);
+            --inner-box-bg: rgba(15, 23, 42, 0.6);
             --text-dark: #f8fafc;
             --text-muted: #94a3b8;
             --brand-color: #3b82f6;
-            --brand-hover: #fcfdff;
+            --brand-hover: #60a5fa;
             --nav-btn-bg: rgba(255, 255, 255, 0.1);
             --nav-btn-border: rgba(255, 255, 255, 0.2);
             --shadow-color: rgba(0, 0, 0, 0.4);
-            
             --alert-bg: rgba(127, 29, 29, 0.4);
             --alert-text: #fca5a5;
             --alert-border: #991b1b;
         }
 
-        body {
-            font-family: 'Inter', sans-serif;
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            color: var(--text-dark);
-            background: linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)), 
-                        url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed;
-            background-size: cover;
-            transition: background 0.4s ease, color 0.4s ease;
-        }
-
+        body { font-family: 'Inter', sans-serif; margin: 0; min-height: 100vh; display: flex; flex-direction: column; color: var(--text-dark); background: linear-gradient(var(--bg-overlay-1), var(--bg-overlay-2)), url('https://images.unsplash.com/photo-1474487548417-781cb71495f3?q=80&w=2000&auto=format&fit=crop') no-repeat center center fixed; background-size: cover; transition: background 0.4s ease, color 0.4s ease; }
+        
         /* --- NAVIGATION --- */
-        .navbar-custom {
-            background: var(--glass-bg);
-            border-bottom: 1px solid var(--card-border);
-            padding: 10px 10px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            backdrop-filter: blur(10px);
-            transition: all 0.4s ease;
-            position: relative; /* Z-INDEX FIX */
-            z-index: 9999;      /* Z-INDEX FIX */
-        }
+        .navbar-custom { background: var(--glass-bg); border-bottom: 1px solid var(--card-border); padding: 10px 15px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(12px); position: sticky; top: 0; z-index: 9999; }
+        .navbar-brand-title { font-size: 1rem; font-weight: 800; color: var(--brand-color); letter-spacing: 0.5px; margin: 0; text-transform: uppercase; }
+        .nav-links { display: flex; gap: 8px; align-items: center; }
+        .nav-btn { background: var(--nav-btn-bg); border: 1px solid var(--nav-btn-border); color: var(--text-dark); font-weight: 600; font-size: 0.85rem; padding: 8px 14px; border-radius: 20px; transition: all 0.2s ease; cursor: pointer; text-decoration: none; }
+        .nav-btn:hover { background: var(--text-dark); color: var(--glass-bg); }
+        .theme-btn { border-radius: 50%; padding: 8px 12px; }
 
-        .navbar-brand-title {
-            font-size: 0.85rem;
-            font-weight: 700;
-            color: var(--brand-color);
-            letter-spacing: 0.3px;
-            margin: 0;
-            text-transform: uppercase;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 6px;
-            align-items: center;
-        }
-
-        .nav-btn {
-            background: var(--nav-btn-bg);
-            border: 1px solid var(--nav-btn-border);
-            color: var(--text-dark);
-            font-weight: 500;
-            font-size: 0.8rem;
-            padding: 6px 10px;
-            border-radius: 15px;
-            transition: all 0.2s ease;
-            cursor: pointer;
-        }
-
-        .nav-btn:hover {
-            background: var(--text-dark);
-            color: var(--glass-bg);
-        }
-
-        .theme-btn {
-            border-radius: 50%;
-            padding: 8px 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        /* --- PREMIUM DROPDOWN MENU STYLING --- */
-        .dropdown-menu-custom { 
-            background-color: var(--glass-bg); 
-            border: 1px solid var(--card-border); 
-            backdrop-filter: blur(12px); 
-            border-radius: 12px; 
-            padding: 10px 0; 
-            box-shadow: 0 15px 40px rgba(0,0,0,0.15); 
-            margin-top: 15px !important; 
-            min-width: 240px; 
-            z-index: 10000; 
-        }
-        .dropdown-item-custom { 
-            color: var(--text-dark); 
-            font-weight: 500; 
-            font-size: 0.95rem; 
-            padding: 12px 20px; 
-            transition: all 0.2s ease; 
-            display: flex; 
-            align-items: center; 
-            gap: 12px; 
-        }
+        /* --- DROPDOWN --- */
+        .dropdown-menu-custom { background-color: var(--glass-bg); border: 1px solid var(--card-border); backdrop-filter: blur(12px); border-radius: 12px; padding: 10px 0; box-shadow: 0 15px 40px rgba(0,0,0,0.15); margin-top: 15px !important; min-width: 250px; z-index: 10000; left: 0 !important; right: auto !important; max-height: 85vh; overflow-y: auto; }
+        .dropdown-header-custom { font-size: 0.72rem; text-transform: uppercase; letter-spacing: 1px; font-weight: 700; color: var(--brand-color); padding: 8px 20px 4px 20px; }
+        .dropdown-item-custom { color: var(--text-dark); font-weight: 500; font-size: 0.9rem; padding: 8px 20px; display: flex; align-items: center; gap: 10px; transition: 0.2s; }
         .dropdown-item-custom:hover { background-color: var(--nav-btn-bg); color: var(--brand-color); }
         body.dark-mode .dropdown-item-custom { color: #f8fafc; }
-        body.dark-mode .dropdown-item-custom:hover { background-color: rgba(255, 255, 255, 0.1); color: var(--brand-hover); }
+        body.dark-mode .dropdown-item-custom:hover { color: var(--brand-hover); background: rgba(255,255,255,0.05); }
+        @media (max-width: 768px) { .dropdown-menu-custom { left: auto !important; right: 0 !important; } }
 
-        /* --- MAIN CONTENT --- */
-        .main-container {
-            flex: 1;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 40px 20px;
-            position: relative; /* Context control */
-            z-index: 1;         /* Stays below navbar */
+        /* --- MAIN HUB LAYOUT --- */
+        .main-container { flex: 1; padding: 40px 15px; position: relative; z-index: 1; max-width: 900px; margin: 0 auto; width: 100%; }
+        
+        .hero-section { text-align: center; margin-bottom: 40px; }
+        .hero-title { font-size: 2.5rem; font-weight: 800; color: var(--brand-color); letter-spacing: -1px; margin-bottom: 10px; }
+        .hero-subtitle { font-size: 1.1rem; color: var(--text-muted); font-weight: 500; }
+
+        .section-title { font-size: 1.3rem; font-weight: 700; color: var(--brand-color); margin-bottom: 20px; display: flex; align-items: center; gap: 8px; border-bottom: 2px solid var(--card-border); padding-bottom: 10px; margin-top: 50px; }
+        
+        /* --- 4 TOOL BOXES (SQUARE GRID) --- */
+        .hub-grid { 
+            display: grid; 
+            grid-template-columns: repeat(4, 1fr); 
+            gap: 15px; 
+            margin: 0 auto 50px auto; 
+            max-width: 550px; 
         }
-
-        .glass-card {
-            background: var(--glass-bg);
-            backdrop-filter: blur(12px);
-            border: 1px solid var(--card-border);
-            border-radius: 16px;
-            padding: 45px 50px;
-            max-width: 800px;
-            width: 100%;
-            text-align: center;
-            box-shadow: 0 15px 35px var(--shadow-color);
-            transition: all 0.4s ease;
-        }
-
-        .main-heading {
-            font-size: 1.5rem;
-            font-weight: 500;
-            margin-bottom: 25px;
-            line-height: 1.4;
-        }
-
-        .highlight-date {
-            color: var(--brand-color);
-            font-weight: 700;
-            font-size: 2rem;
-            display: block;
-            margin-top: 8px;
-        }
-
-        .info-text {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-            margin-bottom: 12px;
-            line-height: 1.6;
-        }
-
-        /* --- INPUT SECTION --- */
-        .interaction-box {
-            background: var(--inner-box-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 30px;
-            margin-top: 35px;
-            transition: all 0.4s ease;
-        }
-
-        .input-group-custom {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-
-        .clean-input {
-            background: var(--glass-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 8px;
-            padding: 12px 18px;
-            color: var(--text-dark);
-            font-size: 1rem;
-            font-family: 'Inter', sans-serif;
-            outline: none;
-            transition: all 0.3s ease;
-            width: 240px;
-        }
-
-        .clean-input:focus {
-            border-color: var(--brand-color);
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
-        }
-
-        body.dark-mode ::-webkit-calendar-picker-indicator {
-            filter: invert(1);
+        @media (max-width: 576px) {
+            .hub-grid { 
+                grid-template-columns: repeat(2, 1fr); 
+                max-width: 260px; 
+            }
         }
         
-        body.dark-mode .accordion-button::after {
-            filter: invert(1);
+        .hub-card { 
+            background: var(--glass-bg); 
+            border: 1px solid var(--card-border); 
+            border-radius: 12px; 
+            padding: 10px; 
+            text-align: center; 
+            text-decoration: none; 
+            color: var(--text-dark); 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
+            box-shadow: 0 8px 20px var(--shadow-color); 
+            backdrop-filter: blur(12px); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            aspect-ratio: 1 / 1; 
         }
+        .hub-card:hover { transform: translateY(-5px); box-shadow: 0 15px 30px var(--shadow-color); border-color: var(--brand-color); color: var(--text-dark); }
+        .hub-icon { font-size: 2rem; margin-bottom: 5px; line-height: 1; }
+        .hub-card-title { font-weight: 700; font-size: 0.95rem; margin: 0; line-height: 1.2; }
+        .hub-card p { display: none; }
+        
+        /* --- GUIDE CARD COMPONENT --- */
+        .guide-card { display: flex; align-items: center; background: var(--glass-bg); border: 1px solid var(--card-border); padding: 15px 20px; border-radius: 12px; text-decoration: none; color: var(--text-dark); transition: 0.2s; font-weight: 600; gap: 15px; box-shadow: 0 4px 12px var(--shadow-color); }
+        .guide-card:hover { background: var(--nav-btn-bg); color: var(--brand-color); border-color: var(--brand-hover); transform: translateX(5px); }
 
-        /* --- RESULT AREA --- */
-        .result-area {
-            margin-top: 25px;
-            padding-top: 25px;
-            border-top: 1px solid var(--card-border);
-            display: none; 
-        }
+        /* --- CALCULATOR BOX --- */
+        .interaction-box { background: var(--glass-bg); border: 1px solid var(--card-border); border-radius: 16px; padding: 40px; margin-bottom: 50px; box-shadow: 0 15px 35px var(--shadow-color); backdrop-filter: blur(12px); }
+        .input-group-custom { display: flex; align-items: center; justify-content: center; gap: 15px; flex-wrap: wrap; }
+        .clean-input { background: var(--inner-box-bg); border: 1px solid var(--card-border); border-radius: 8px; padding: 12px 18px; color: var(--text-dark); font-size: 1rem; width: 240px; }
+        .clean-input:focus { border-color: var(--brand-color); box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15); outline: none; }
+        body.dark-mode ::-webkit-calendar-picker-indicator { filter: invert(1); }
 
-        .result-area.show {
-            display: block;
-            animation: fadeInDown 0.5s ease-out forwards;
-        }
+        .result-area { margin-top: 25px; padding-top: 25px; border-top: 1px solid var(--card-border); display: none; text-align: center; }
+        .result-area.show { display: block; animation: fadeInDown 0.5s ease-out forwards; }
+        .result-date { font-size: 2.2rem; color: var(--brand-color); font-weight: 700; margin: 5px 0 10px 0; letter-spacing: -0.5px; }
+        .btn-calendar { background-color: var(--brand-color); color: #ffffff; border: none; border-radius: 8px; padding: 10px 24px; font-weight: 600; font-size: 0.95rem; transition: 0.2s; display: inline-flex; align-items: center; gap: 8px; cursor: pointer; }
+        .btn-calendar:hover { background-color: var(--brand-hover); color: #ffffff; transform: translateY(-2px); }
 
-        .result-date {
-            font-size: 2rem;
-            color: var(--brand-color);
-            font-weight: 700;
-            margin: 5px 0 10px 0;
-            letter-spacing: -0.5px;
-        }
+        .tatkal-card { background: var(--glass-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 25px; text-align: center; transition: 0.3s; box-shadow: 0 10px 25px var(--shadow-color); margin-bottom: 20px;}
+        .timer-display { font-size: 1.8rem; font-weight: 700; color: var(--brand-color); margin: 5px 0; font-variant-numeric: tabular-nums; }
 
-        .btn-calendar {
-            background-color: var(--brand-color);
-            color: #ffffff;
-            border: none;
-            border-radius: 8px;
-            padding: 10px 24px;
-            font-weight: 600;
-            font-size: 0.95rem;
-            transition: background-color 0.2s ease, transform 0.1s ease;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            cursor: pointer;
-        }
-
-        .btn-calendar:hover {
-            background-color: var(--brand-hover);
-            color: #ffffff;
-            transform: translateY(-2px);
-        }
-
-        /* Festive Alert Box */
-        .alert-festive {
-            background-color: var(--alert-bg);
-            color: var(--alert-text);
-            border: 1px solid var(--alert-border);
-            border-radius: 8px;
-            padding: 12px 15px;
-            margin-bottom: 15px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            display: none; 
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            transition: all 0.3s ease;
-        }
-
-        /* --- TATKAL SECTION CSS --- */
-        .tatkal-card {
-            background: var(--glass-bg);
-            border: 1px solid var(--card-border);
-            border-radius: 12px;
-            padding: 20px;
-            text-align: center;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px var(--shadow-color);
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-
-        .tatkal-card:hover {
-            transform: translateY(-4px);
-            border-color: var(--brand-hover);
-        }
-
-        .tatkal-title {
-            font-size: 1.05rem;
-            font-weight: 600;
-            margin-bottom: 5px;
-            color: var(--text-dark);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-        }
-
-        .tatkal-time-info {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            margin-bottom: 15px;
-        }
-
-        .timer-display {
-            font-size: 1.6rem;
-            font-weight: 700;
-            color: var(--brand-color);
-            letter-spacing: 0.5px;
-            margin: 5px 0;
-            font-feature-settings: "tnum";
-            font-variant-numeric: tabular-nums;
-        }
-
-        /* --- FOOTER --- */
-        .footer {
-            background: var(--glass-bg);
-            border-top: 1px solid var(--card-border);
-            text-align: center;
-            padding: 15px;
-            font-size: 0.85rem;
-            color: var(--text-muted);
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            transition: all 0.4s ease;
-        }
-
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* --- DARK MODE TEXT FIX --- */
-        body.dark-mode p, 
-        body.dark-mode li, 
-        body.dark-mode h1, 
-        body.dark-mode h2, 
-        body.dark-mode h3, 
-        body.dark-mode h4, 
-        body.dark-mode .accordion-button, 
-        body.dark-mode .accordion-body {
-            color: var(--text-dark) !important;
-        }
-
-        body.dark-mode .text-muted {
-            color: var(--text-muted) !important;
-        }
+        .footer { background: var(--glass-bg); border-top: 1px solid var(--card-border); text-align: center; padding: 25px 15px; font-size: 0.85rem; color: var(--text-muted); font-weight: 500; backdrop-filter: blur(12px); }
+        
+        @keyframes fadeInDown { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+        
+        body.dark-mode p, body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode h4, body.dark-mode .guide-card, body.dark-mode .hub-card { color: var(--text-dark) !important; }
+        body.dark-mode .text-muted { color: var(--text-muted) !important; }
     </style>
-    
-    <!-- Google AdSense Verification Code -->
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2959339266808085" crossorigin="anonymous"></script>
-
 </head>
 <body>
 
@@ -432,17 +166,22 @@
             </a>
         </h1>
         <div class="nav-links">
-            
-            <!-- NEW TOOLS DROPDOWN -->
             <div class="dropdown">
-                <button class="nav-btn dropdown-toggle d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--brand-color); color: white; border: none; font-weight: 600;">
-                    <i class="bi bi-grid-fill me-1"></i> Tools
+                <button class="nav-btn d-flex align-items-center" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="background: var(--brand-color); color: white; border: none;">
+                    <i class="bi bi-grid-fill me-1"></i> Directory
                 </button>
-                <ul class="dropdown-menu dropdown-menu-end dropdown-menu-custom">
+                <ul class="dropdown-menu dropdown-menu-custom">
+                    <li class="dropdown-header-custom">Calculators & Tools</li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="index.html#booking-calc-section"><i class="bi bi-calendar-check text-primary"></i> 60-Day Calculator</a></li>
                     <li><a class="dropdown-item dropdown-item-custom" href="refund-calculator.html"><i class="bi bi-currency-rupee text-success"></i> Refund Calculator</a></li>
                     <li><a class="dropdown-item dropdown-item-custom" href="seat-map-layout.html"><i class="bi bi-person-workspace text-info"></i> Seat & Berth Map</a></li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="irctc-tatkal-booking-guide.html"><i class="bi bi-lightning-charge-fill text-warning"></i> Tatkal Timers</a></li>
                     <li><hr class="dropdown-divider" style="border-color: var(--card-border);"></li>
-                    <li><a class="dropdown-item dropdown-item-custom" href="irctc-tatkal-booking-guide.html"><i class="bi bi-lightning-charge-fill text-warning"></i> Tatkal Guide</a></li>
+                    <li class="dropdown-header-custom">Railway Knowledge Base</li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="rac-vs-waitlist-guide.html"><i class="bi bi-card-checklist text-primary"></i> RAC vs Waitlist Guide</a></li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="vikalp-scheme-explained.html"><i class="bi bi-shuffle text-success"></i> Vikalp Scheme Explained</a></li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="premium-tatkal-rules.html"><i class="bi bi-graph-up-arrow text-danger"></i> Premium Tatkal Rules</a></li>
+                    <li><a class="dropdown-item dropdown-item-custom" href="irctc-cancellation-refund-policy.html"><i class="bi bi-receipt text-secondary"></i> Cancellation Policy</a></li>
                 </ul>
             </div>
 
@@ -450,235 +189,183 @@
                 <i id="themeIcon" class="bi bi-moon-fill"></i>
             </button>
             
-            <!-- Hidden on very small screens to save space, visible on tablets/desktops -->
             <a href="about.html" class="nav-btn text-decoration-none d-none d-sm-inline-block">About</a>
             <a href="contact.html" class="nav-btn text-decoration-none d-none d-sm-inline-block">Contact</a>
         </div>
     </nav>
 
     <main class="main-container">
-        <div class="glass-card">
-            
-            <h2 class="main-heading">
-                Today you can book tickets for journey date till 
-                <span id="maxBookableDateDisplay" class="highlight-date"></span>
-            </h2>
-            
-            <p class="info-text">The above date is calculated assuming the train starts from the starting station on the same day.</p>
-            <p class="info-text">Calculate when you can start booking IRCTC tickets for any travel date, add the booking date to your favourite calendar, and get notified on the booking day.</p>
-            <p class="info-text">The date on which the particular train starts from the starting station should be mentioned as the Date of Journey.</p>
-
-            <div class="interaction-box">
-                <div class="input-group-custom">
-                    <label for="journeyDate" class="fw-semibold">Enter Date of Journey:</label>
-                    <input type="date" id="journeyDate" class="clean-input">
-                </div>
-
-                <div id="resultContainer" class="result-area">
-                    
-                    <div id="festiveWarning" class="alert-festive">
-                        <i class="bi bi-exclamation-triangle-fill"></i>
-                        <span id="festiveText"></span>
-                    </div>
-
-                    <p class="text-muted mb-1 fw-medium">Booking opens on:</p>
-                    <p id="bookingDateDisplay" class="result-date"></p>
-                    
-                    <p id="bookingTimeDisplay" class="text-muted mb-3 fw-medium" style="font-size: 0.95rem;">
-                        <i class="bi bi-clock me-1"></i> Time: 08:00 AM IST
-                    </p>
-                    
-                    <button type="button" id="downloadCalBtn" class="btn-calendar">
-                        <i class="bi bi-calendar-plus"></i> Add to Calendar
-                    </button>
-                </div>
-            </div>
-
-            <!-- TATKAL SECTION START -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-4" style="font-size: 1.1rem; color: var(--brand-color);">
-                    <i class="bi bi-stopwatch me-1"></i> Tatkal Booking Timers
-                </h3>
-                
-                <div class="row g-4">
-                    <div class="col-md-6">
-                        <div class="tatkal-card">
-                            <div class="tatkal-title">
-                                <i class="bi bi-snow2 text-info"></i> AC Classes
-                            </div>
-                            <div class="tatkal-time-info">Opens exactly at 10:00 AM</div>
-                            <div class="timer-display" id="acTimer">--h --m --s</div>
-                            <div class="text-muted small mt-1">Time remaining</div>
-                        </div>
-                    </div>
-                    
-                    <div class="col-md-6">
-                        <div class="tatkal-card">
-                            <div class="tatkal-title">
-                                <i class="bi bi-train-lightrail text-warning"></i> Non-AC (Sleeper)
-                            </div>
-                            <div class="tatkal-time-info">Opens exactly at 11:00 AM</div>
-                            <div class="timer-display" id="nonAcTimer">--h --m --s</div>
-                            <div class="text-muted small mt-1">Time remaining</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="mt-4 p-3 rounded" style="background: var(--inner-box-bg); border: 1px solid var(--card-border); color: var(--text-muted); font-size: 0.85rem;">
-                    <strong>💡 Quick Tip:</strong> Tatkal booking starts 1 day prior to the journey date from the train's originating station.
-                </div>
-            </div>
-            <!-- TATKAL SECTION END -->
-
-            <!-- REFUND & CANCELLATION GUIDE START -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
-                    <i class="bi bi-receipt me-1"></i> Cancellation & Refund Guide
-                </h3>
-                
-                <div class="accordion" id="refundAccordion">
-                    
-                    <div class="accordion-item" style="background: transparent; border: 1px solid var(--card-border); margin-bottom: 10px; border-radius: 8px; overflow: hidden;">
-                        <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne" style="background: var(--inner-box-bg); color: var(--text-dark); font-weight: 600; box-shadow: none;">
-                                Is a refund available on Tatkal ticket cancellation?
-                            </button>
-                        </h2>
-                        <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#refundAccordion">
-                            <div class="accordion-body text-muted small" style="background: var(--glass-bg);">
-                                <ul class="mb-0 ps-3">
-                                    <li class="mb-2"><strong>Confirmed Tatkal Tickets:</strong> No refund is granted (Zero refund) upon cancellation.</li>
-                                    <li><strong>Waitlisted / RAC Tatkal:</strong> If cancelled before chart preparation, basic clerkage charges (₹60 + GST per passenger) are deducted and the remaining amount is refunded.</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="accordion-item" style="background: transparent; border: 1px solid var(--card-border); border-radius: 8px; overflow: hidden;">
-                        <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" style="background: var(--inner-box-bg); color: var(--text-dark); font-weight: 600; box-shadow: none;">
-                                What are the cancellation charges for a Normal Confirmed Ticket?
-                            </button>
-                        </h2>
-                        <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#refundAccordion">
-                            <div class="accordion-body text-muted small" style="background: var(--glass-bg);">
-                                If you cancel the ticket at least <strong>48 hours before</strong> the scheduled departure, the flat deduction per passenger is:
-                                <ul class="mb-0 mt-2 ps-3">
-                                    <li><strong>AC 1st Class / Executive:</strong> ₹240 + GST</li>
-                                    <li><strong>AC 2 Tier / 1st Class:</strong> ₹200 + GST</li>
-                                    <li><strong>AC 3 Tier / Chair Car:</strong> ₹180 + GST</li>
-                                    <li><strong>Sleeper Class:</strong> ₹120</li>
-                                    <li><strong>Second Class:</strong> ₹60</li>
-                                </ul>
-                                <div class="mt-2 text-danger" style="font-size: 0.8rem;">
-                                    <em>Note: If cancelled less than 48 hours before departure, cancellation charges can increase to 25% or 50% of the ticket fare depending on the exact timing.</em>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-            <!-- REFUND & CANCELLATION GUIDE END -->
-
-            <!-- FAQ Section -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Frequently Asked Questions</h3>
-                
-                <div class="mb-3">
-                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">When does IRCTC advance ticket booking open?</h4>
-                    <p class="text-muted small mb-0">Advance ticket booking typically opens at <strong>08:00 AM IST</strong> sharp on the day your booking window opens (60 days prior to the journey date).</p>
-                </div>
-
-                <div class="mb-3">
-                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">Does the 60-day window include the journey date?</h4>
-                    <p class="text-muted small mb-0">No, the advance reservation period is calculated backwards starting from the day before your journey date.</p>
-                </div>
-
-                <div class="mb-3">
-                    <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">Why should I add reminders to my calendar?</h4>
-                    <p class="text-muted small mb-0">Popular trains sell out within minutes during peak holiday seasons. Setting a calendar reminder ensures you are logged in and ready right at 8:00 AM.</p>
-                </div>
-            </div>
-
-            <!-- DETAILED GUIDE -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">Complete Guide to IRCTC Advance Train Ticket Booking (60-Day Rule)</h3>
-                <p class="text-muted small mb-3">
-                    Planning a train journey across Indian Railways requires meticulous timing, especially given the high volume of daily commuters and peak festive rushes. According to the Indian Railways Advance Reservation Period (ARP) guidelines, general reservation tickets can be booked up to 60 days in advance (excluding the date of journey).
-                </p>
-                <h4 class="fw-bold mb-1" style="font-size: 0.95rem;">Why Use a Train Date Calculator?</h4>
-                <p class="text-muted small mb-3">
-                    Manually counting back 60 days can often lead to confusion due to varying month lengths (28, 30, or 31 days) and leap years. Missing your booking window by even a single day during major holiday rushes like Diwali, Holi, or Summer vacations can result in your preferred train seats selling out completely, leaving you stranded on the waitlist. This utility tool automates the process instantly, providing you with the exact opening date and time, calendar export options, and real-time countdowns for Tatkal tickets.
-                </p>
-            </div>
-
-            <!-- PRO TIPS SECTION -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
-                    <i class="bi bi-lightning-charge me-1"></i> Pro Tips for Faster IRCTC Ticket Booking
-                </h3>
-                <p class="text-muted small mb-3">To maximize your chances of getting a confirmed ticket during the 8:00 AM advance booking rush or Tatkal window, keep these expert tips in mind:</p>
-                <ul class="text-muted small ps-3 mb-0" style="line-height: 1.8;">
-                    <li><strong>Create a Master List:</strong> Pre-save your passenger details in the IRCTC 'Master List' section to save crucial seconds during checkout.</li>
-                    <li><strong>Optimize Payment Methods:</strong> Use IRCTC eWallet or UPI (PhonePe, GPay) for instant payments to avoid OTP delays from debit/credit cards.</li>
-                    <li><strong>Login Timing Strategy:</strong> Log into the IRCTC website or app exactly 2-3 minutes before the window opens (e.g., 7:57 AM) to avoid server load timeouts.</li>
-                    <li><strong>Have Backup Plans:</strong> Keep alternative trains and dates ready in case your preferred train sells out within the first 60 seconds.</li>
-                </ul>
-            </div>
-
-            <!-- HOW TO USE SECTION -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.1rem; color: var(--brand-color);">
-                    <i class="bi bi-question-circle me-1"></i> How to Use the Train Date Tracker
-                </h3>
-                <ol class="text-muted small ps-3 mb-0" style="line-height: 1.8;">
-                    <li><strong>Select Journey Date:</strong> Click on the calendar input box and select the exact date you wish to board the train from your originating station.</li>
-                    <li><strong>Check the Result:</strong> The tool will instantly display the exact date when the 60-day advance booking window opens for your journey.</li>
-                    <li><strong>Set a Reminder:</strong> Click the "Add to Calendar" button to download a standard `.ics` file. Open it to set an automatic reminder on your phone or PC before 8:00 AM.</li>
-                    <li><strong>Track Tatkal Timings:</strong> If you missed the 60-day window, refer to the live countdown timers for AC and Non-AC Tatkal bookings.</li>
-                </ol>
-            </div>
-
-            <!-- COMPREHENSIVE SEO CONTENT FOR ADSENSE -->
-            <div class="text-start mt-5 pt-4 border-top" style="border-color: var(--card-border) !important;">
-                <h3 class="fw-bold mb-3" style="font-size: 1.2rem; color: var(--brand-color);">
-                    <i class="bi bi-book-half me-1"></i> The Ultimate Guide to the 60-Day Advance Reservation Period (ARP)
-                </h3>
-                <p class="text-muted small mb-3" style="line-height: 1.8;">
-                    Millions of passengers travel via the Indian Railways network daily, making ticket availability highly competitive. To ensure a fair booking process, the Ministry of Railways established the Advance Reservation Period (ARP). Currently, the general ARP allows passengers to book train tickets exactly 60 days ahead of the journey date. This rule is crucial for planning long-distance travel, especially during peak seasons like Diwali, Holi, and summer vacations.
-                </p>
-                
-                <h4 class="fw-bold mb-2 mt-4" style="font-size: 1rem;">How is the 60-Day Booking Window Calculated?</h4>
-                <p class="text-muted small mb-3" style="line-height: 1.8;">
-                    Calculating the exact date your booking window opens can be mathematically confusing. The 60-day count excludes the actual date of the journey. Because different months have 28, 30, or 31 days (and leap years introduce further variation in February), simply subtracting two months from your travel date will often give you the wrong opening date. Missing the exact opening day by even 24 hours usually means your desired class (like 3AC or Sleeper) will slip into the Waitlist (WL) or Reservation Against Cancellation (RAC) status.
-                </p>
-
-                <h4 class="fw-bold mb-2 mt-4" style="font-size: 1rem;">Why Did Indian Railways Set the ARP to 60 Days?</h4>
-                <p class="text-muted small mb-3" style="line-height: 1.8;">
-                    Historically, the Advance Reservation Period has fluctuated. It was previously set at 120 days, but the authorities reduced it to 60 days to discourage touts and prevent the mass hoarding of tickets. A shorter window ensures that genuine passengers who are certain about their travel plans have a better chance of securing confirmed berths. It also significantly reduces the cancellation rate, streamlining the administrative load on the IRCTC servers.
-                </p>
-
-                <h4 class="fw-bold mb-2 mt-4" style="font-size: 1rem;">Exceptions to the 60-Day Booking Rule</h4>
-                <p class="text-muted small mb-3" style="line-height: 1.8;">
-                    While the standard 60-day rule applies to the vast majority of Express and Mail trains, there are a few notable exceptions. Certain daytime intercity trains (like the Taj Express or Gomti Express) have shorter ARPs, often restricted to 15 or 30 days. Additionally, foreign tourists have a special quota with a 365-day advance booking window. However, for the average domestic traveler booking general quota tickets, the 60-day tracker remains the ultimate standard for securing confirmed seats.
-                </p>
-            </div>
-
+        
+        <!-- HERO SECTION -->
+        <div class="hero-section">
+            <h1 class="hero-title">Train Date Tracker</h1>
+            <p class="hero-subtitle">Free Indian Railway utility tools and expert guides to help you plan your journey flawlessly.</p>
         </div>
+
+        <!-- OUR TOOLS HUB GRID (COMPACT SQUARES) -->
+        <h2 class="section-title"><i class="bi bi-tools"></i> Our Tools</h2>
+        <div class="hub-grid">
+            <a href="#booking-calc-section" class="hub-card">
+                <div class="hub-icon">📅</div>
+                <h3 class="hub-card-title">Booking</h3>
+                <p>Find your exact 60-day window.</p>
+            </a>
+            
+            <a href="refund-calculator.html" class="hub-card">
+                <div class="hub-icon">💰</div>
+                <h3 class="hub-card-title">Refund</h3>
+                <p>Check exact cancellation charges.</p>
+            </a>
+
+            <a href="seat-map-layout.html" class="hub-card">
+                <div class="hub-icon">🛏️</div>
+                <h3 class="hub-card-title">Berths</h3>
+                <p>Find your window or side-lower seat.</p>
+            </a>
+
+            <a href="irctc-tatkal-booking-guide.html" class="hub-card">
+                <div class="hub-icon">⏱️</div>
+                <h3 class="hub-card-title">Tatkal</h3>
+                <p>Live countdowns & booking tricks.</p>
+            </a>
+        </div>
+
+        <!-- MAIN 60-DAY BOOKING CALCULATOR -->
+        <div id="booking-calc-section" class="interaction-box">
+            <h2 class="fw-bold text-center mb-3" style="color: var(--brand-color);">60-Day Booking Date Calculator</h2>
+            <p class="text-center text-muted mb-4">Calculate when you can start booking tickets. Today, you can book journeys up to <strong id="maxBookableDateDisplay" style="color: var(--brand-color);"></strong>.</p>
+            
+            <div class="input-group-custom">
+                <label for="journeyDate" class="fw-semibold">Enter Date of Journey:</label>
+                <input type="date" id="journeyDate" class="clean-input">
+            </div>
+
+            <div id="resultContainer" class="result-area">
+                <div id="festiveWarning" class="alert-festive" style="display: none;">
+                    <i class="bi bi-exclamation-triangle-fill"></i> <span id="festiveText"></span>
+                </div>
+                <p class="text-muted mb-1 fw-medium">Advance Booking Opens On:</p>
+                <p id="bookingDateDisplay" class="result-date"></p>
+                <p id="bookingTimeDisplay" class="text-muted mb-4 fw-medium"><i class="bi bi-clock me-1"></i> Time: 08:00 AM IST</p>
+                <button type="button" id="downloadCalBtn" class="btn-calendar"><i class="bi bi-calendar-plus"></i> Add to Calendar</button>
+            </div>
+        </div>
+
+        <!-- DEEP SEO CONTENT FOR 60-DAY RULE -->
+        <div class="mb-5">
+            <h2 class="section-title border-0 pb-0 mt-0"><i class="bi bi-book-half"></i> How the 60-Day Advance Booking Rule Works</h2>
+            <p>Booking a train ticket on the Indian Railways network during holiday seasons requires precise timing. To manage server loads and give genuine passengers a fair chance to secure confirmed berths, the Ministry of Railways enforces the <strong>Advance Reservation Period (ARP)</strong>.</p>
+            <p>Currently, the general ARP allows passengers to book IRCTC train tickets exactly <strong>60 days ahead of the journey date</strong>. </p>
+
+            <h3 class="mt-4">How the Calculator Eliminates Confusion</h3>
+            <p>Calculating the exact date your booking window opens can be mathematically frustrating. The 60-day count <em>excludes</em> the actual date of the journey. Because different months have 28, 30, or 31 days (and leap years introduce further variation in February), simply subtracting two months from your travel date will often yield the wrong opening date.</p>
+            <p>Missing the exact opening day by even 24 hours usually means your desired class (like 3AC or Sleeper) will slip into the Waitlist (WL) or Reservation Against Cancellation (RAC) status. Our calculator instantly processes month lengths and leap years to give you the exact calendar date.</p>
+
+            <h3 class="mt-4">Exceptions to the 60-Day Rule</h3>
+            <p>While the standard 60-day rule applies to the vast majority of long-distance Express and Mail trains, you should be aware of a few notable exceptions:</p>
+            <ul>
+                <li><strong>Daytime Intercity Trains:</strong> Certain short-distance intercity trains (like the Taj Express or Gomti Express) have significantly shorter ARPs, often restricted to 15 or 30 days.</li>
+                <li><strong>Foreign Tourist Quota:</strong> Foreign tourists traveling to India are granted a special quota with a massive 365-day advance booking window to help them plan international itineraries.</li>
+                <li><strong>Special Holiday Trains:</strong> During massive rushes like Diwali or Chhath Puja, IRCTC sometimes announces "Special Trains" just 10 to 15 days before departure.</li>
+            </ul>
+
+            <h3 class="mt-4">Holiday Rush Strategy</h3>
+            <p>If you are traveling during major 2026 festivals (like Holi in March or Diwali in November), calculating your booking date is only the first step. You must log into the IRCTC portal or app by <strong>7:58 AM</strong> on the exact day advance booking opens. Seats on popular routes (like Delhi to Patna or Mumbai to Varanasi) can sell out within the first 5 minutes of the 8:00 AM window opening.</p>
+        </div>
+
+        <!-- TATKAL TIMERS -->
+        <div id="tatkal-section" class="mb-5">
+            <h2 class="section-title"><i class="bi bi-stopwatch"></i> Live Tatkal Timers</h2>
+            <div class="row g-4">
+                <div class="col-md-6">
+                    <div class="tatkal-card">
+                        <div class="fw-bold mb-2"><i class="bi bi-snow2 text-info"></i> AC Classes (10:00 AM)</div>
+                        <div class="timer-display" id="acTimer">--h --m --s</div>
+                        <div class="text-muted small mt-1">Time remaining</div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="tatkal-card">
+                        <div class="fw-bold mb-2"><i class="bi bi-train-lightrail text-warning"></i> Non-AC / Sleeper (11:00 AM)</div>
+                        <div class="timer-display" id="nonAcTimer">--h --m --s</div>
+                        <div class="text-muted small mt-1">Time remaining</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- COMPLETE RAILWAY GUIDES DIRECTORY (INTERNAL LINKING HUB) -->
+        <h2 class="section-title"><i class="bi bi-journal-text"></i> Explore Railway Guides</h2>
+        <div class="d-flex flex-column gap-3 mb-5">
+            <a href="rac-vs-waitlist-guide.html" class="guide-card">
+                <i class="bi bi-card-checklist fs-3 text-primary"></i>
+                <div>
+                    <div class="mb-0">RAC vs Waitlist (WL) Explained</div>
+                    <small class="text-muted fw-normal">Demystifying GNWL, RLWL, PQWL, and your actual chances of seat confirmation.</small>
+                </div>
+            </a>
+
+            <a href="vikalp-scheme-explained.html" class="guide-card">
+                <i class="bi bi-shuffle fs-3 text-success"></i>
+                <div>
+                    <div class="mb-0">IRCTC Vikalp Scheme Explained</div>
+                    <small class="text-muted fw-normal">How alternate train accommodation works for waitlisted passengers without extra charges.</small>
+                </div>
+            </a>
+
+            <a href="premium-tatkal-rules.html" class="guide-card">
+                <i class="bi bi-graph-up-arrow fs-3 text-danger"></i>
+                <div>
+                    <div class="mb-0">Premium Tatkal Rules & Dynamic Pricing</div>
+                    <small class="text-muted fw-normal">Understand dynamic price surges, booking limits, and strict zero-refund policies.</small>
+                </div>
+            </a>
+
+            <a href="irctc-tatkal-booking-guide.html" class="guide-card">
+                <i class="bi bi-stopwatch fs-3 text-warning"></i>
+                <div>
+                    <div class="mb-0">Tatkal Booking Tricks & Master List Guide</div>
+                    <small class="text-muted fw-normal">Learn login timing strategies, payment gateway optimization, and auto-fill hacks.</small>
+                </div>
+            </a>
+            
+            <a href="irctc-cancellation-refund-policy.html" class="guide-card">
+                <i class="bi bi-currency-rupee fs-3 text-success"></i>
+                <div>
+                    <div class="mb-0">Cancellation & Refund Rules</div>
+                    <small class="text-muted fw-normal">Detailed breakdown of flat clerkage fees and percentage deductions across classes.</small>
+                </div>
+            </a>
+
+            <a href="seat-map-layout.html" class="guide-card">
+                <i class="bi bi-person-workspace fs-3 text-info"></i>
+                <div>
+                    <div class="mb-0">Berth Types & Seat Maps</div>
+                    <small class="text-muted fw-normal">Understand the seating architecture of 3AC, 2AC, Sleeper, and Chair Cars.</small>
+                </div>
+            </a>
+        </div>
+
     </main>
 
-    <!-- UPDATED FOOTER WITH NEW LINKS -->
+    <!-- FOOTER WITH COMPLETE INTERNAL LINKING -->
     <footer class="footer">
         <p class="mb-3"><strong>Disclaimer:</strong> This is an independent utility tool. We are NOT affiliated, endorsed, or related to IRCTC, Indian Railways, or the Government of India.</p>
         
-        <!-- ALL CONTENT PAGES AND TOOLS -->
         <div class="mb-3 d-flex justify-content-center flex-wrap gap-2">
-            <span class="text-muted small fw-bold">Helpful Tools & Guides:</span>
-            <a href="irctc-tatkal-booking-guide.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Tatkal Guide</a> <span class="text-muted small">|</span>
-            <a href="irctc-cancellation-refund-policy.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Cancellation Policy</a> <span class="text-muted small">|</span>
+            <span class="text-muted small fw-bold">Tools:</span>
+            <a href="index.html#booking-calc-section" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Booking Calculator</a> <span class="text-muted small">|</span>
             <a href="refund-calculator.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Refund Calculator</a> <span class="text-muted small">|</span>
-            <a href="seat-map-layout.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Seat & Berth Map</a>
+            <a href="seat-map-layout.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Seat & Berth Map</a> <span class="text-muted small">|</span>
+            <a href="irctc-tatkal-booking-guide.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Tatkal Timers</a>
+        </div>
+
+        <div class="mb-3 d-flex justify-content-center flex-wrap gap-2">
+            <span class="text-muted small fw-bold">Guides:</span>
+            <a href="rac-vs-waitlist-guide.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">RAC vs Waitlist</a> <span class="text-muted small">|</span>
+            <a href="vikalp-scheme-explained.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Vikalp Scheme</a> <span class="text-muted small">|</span>
+            <a href="premium-tatkal-rules.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Premium Tatkal</a> <span class="text-muted small">|</span>
+            <a href="irctc-cancellation-refund-policy.html" style="color: #60a5fa; text-decoration: none; font-size: 0.85rem;">Refund Policy</a>
         </div>
 
         <div class="d-flex justify-content-center gap-3 mb-2 flex-wrap">
@@ -691,11 +378,9 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             
-            // --- Master List of 2026 Festivals ---
             const holidays2026 = [
                 { date: "2026-03-03", name: "Holi" },
                 { date: "2026-10-18", name: "Durga Puja / Dussehra" },
@@ -704,22 +389,17 @@
                 { date: "2026-12-25", name: "Christmas" }
             ];
 
-            // --- 0. Calculate "Max Bookable Date Today" in JS ---
             const maxDateElement = document.getElementById('maxBookableDateDisplay');
             const today = new Date();
             const bookableTillDate = new Date(today);
             bookableTillDate.setDate(today.getDate() + 60); 
+            maxDateElement.innerText = bookableTillDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).replace(/,/g, '');
 
-            const displayOptions = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-            maxDateElement.innerText = bookableTillDate.toLocaleDateString('en-US', displayOptions).replace(/,/g, '');
-
-            // 1. Theme Toggle Logic
             const themeToggleBtn = document.getElementById('themeToggleBtn');
             if(themeToggleBtn) {
                 themeToggleBtn.addEventListener('click', function() {
                     document.body.classList.toggle('dark-mode');
                     const themeIcon = document.getElementById('themeIcon');
-                    
                     if (document.body.classList.contains('dark-mode')) {
                         themeIcon.classList.replace('bi-moon-fill', 'bi-sun-fill');
                     } else {
@@ -728,13 +408,11 @@
                 });
             }
 
-            // 2. Date Calculation, Holiday & Timezone Logic
             const dateInput = document.getElementById('journeyDate');
             let calculatedBookingDate = null; 
 
             if(dateInput) {
-                const todayStr = new Date().toISOString().split('T')[0];
-                dateInput.setAttribute('min', todayStr);
+                dateInput.setAttribute('min', new Date().toISOString().split('T')[0]);
                 
                 dateInput.addEventListener('change', function() {
                     const journeyDateVal = this.value;
@@ -744,126 +422,75 @@
                     const festiveText = document.getElementById('festiveText');
                     const timeDisplayElement = document.getElementById('bookingTimeDisplay');
 
-                    if (!journeyDateVal) {
-                        resultContainer.classList.remove('show');
-                        return;
-                    }
+                    if (!journeyDateVal) { resultContainer.classList.remove('show'); return; }
 
                     const journeyDate = new Date(journeyDateVal);
                     calculatedBookingDate = new Date(journeyDate);
                     calculatedBookingDate.setDate(journeyDate.getDate() - 60);
 
-                    // Holiday Checking Logic 
                     let foundHoliday = null;
                     for(let i = 0; i < holidays2026.length; i++) {
-                        const hDate = new Date(holidays2026[i].date);
-                        const diffTime = Math.abs(journeyDate - hDate);
-                        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); 
-                        
-                        if(diffDays <= 4) {
-                            foundHoliday = holidays2026[i].name;
-                            break;
-                        }
+                        const diffDays = Math.ceil(Math.abs(journeyDate - new Date(holidays2026[i].date)) / (1000 * 60 * 60 * 24)); 
+                        if(diffDays <= 4) { foundHoliday = holidays2026[i].name; break; }
                     }
 
                     if(foundHoliday) {
-                       festiveText.innerText = "High Demand Expected! Your journey is near " + foundHoliday + ".";
+                       festiveText.innerText = "High Demand Expected! Journey near " + foundHoliday + ".";
                        warningBox.style.display = 'flex';
                     } else {
                         warningBox.style.display = 'none';
                     }
 
-                    const options = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
-                    const formattedDate = calculatedBookingDate.toLocaleDateString('en-US', options).replace(/,/g, '');
+                    const formattedDate = calculatedBookingDate.toLocaleDateString('en-US', { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' }).replace(/,/g, '');
 
-                    // NRI TIME ZONE LOGIC
                     const userTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-                    const y = calculatedBookingDate.getFullYear();
-                    const m = String(calculatedBookingDate.getMonth() + 1).padStart(2, '0');
-                    const d = String(calculatedBookingDate.getDate()).padStart(2, '0');
-                    
-                    const bookingTimeIST = new Date(y + "-" + m + "-" + d + "T08:00:00+05:30");
+                    const bookingTimeIST = new Date(calculatedBookingDate.getFullYear() + "-" + String(calculatedBookingDate.getMonth() + 1).padStart(2, '0') + "-" + String(calculatedBookingDate.getDate()).padStart(2, '0') + "T08:00:00+05:30");
 
                     if (userTimeZone !== 'Asia/Calcutta' && userTimeZone !== 'Asia/Kolkata') {
-                        const localTimeStr = bookingTimeIST.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' });
-                        timeDisplayElement.innerHTML = '<i class="bi bi-clock me-1"></i> Time: 08:00 AM IST <br><span style="font-size: 0.85rem; color: var(--brand-color);">(Your local time: ' + localTimeStr + ')</span>';
+                        timeDisplayElement.innerHTML = '<i class="bi bi-clock me-1"></i> Time: 08:00 AM IST <br><span style="font-size: 0.85rem; color: var(--brand-color);">(Your local time: ' + bookingTimeIST.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' }) + ')</span>';
                     } else {
                         timeDisplayElement.innerHTML = '<i class="bi bi-clock me-1"></i> Time: 08:00 AM IST';
                     }
 
                     resultContainer.classList.remove('show');
-                    setTimeout(function() {
-                        displayElement.innerText = formattedDate;
-                        resultContainer.classList.add('show');
-                    }, 50);
+                    setTimeout(() => { displayElement.innerText = formattedDate; resultContainer.classList.add('show'); }, 50);
                 });
             }
 
-            // 3. Add to Calendar Logic
             const downloadCalBtn = document.getElementById('downloadCalBtn');
             if(downloadCalBtn) {
                 downloadCalBtn.addEventListener('click', function() {
                     if (!calculatedBookingDate) return;
-
-                    const year = calculatedBookingDate.getFullYear();
-                    const month = String(calculatedBookingDate.getMonth() + 1).padStart(2, '0');
-                    const day = String(calculatedBookingDate.getDate()).padStart(2, '0');
+                    const pad = (n) => String(n).padStart(2, '0');
+                    const startDate = `${calculatedBookingDate.getFullYear()}${pad(calculatedBookingDate.getMonth()+1)}${pad(calculatedBookingDate.getDate())}T023000Z`; 
+                    const endDate = `${calculatedBookingDate.getFullYear()}${pad(calculatedBookingDate.getMonth()+1)}${pad(calculatedBookingDate.getDate())}T030000Z`;   
                     
-                    const startDate = `${year}${month}${day}T023000Z`; 
-                    const endDate = `${year}${month}${day}T030000Z`;   
-
-                    const icsData = 
-                        "BEGIN:VCALENDAR\n" +
-                        "VERSION:2.0\n" +
-                        "BEGIN:VEVENT\n" +
-                        "DTSTART:" + startDate + "\n" +
-                        "DTEND:" + endDate + "\n" +
-                        "SUMMARY:Book IRCTC Train Ticket\n" +
-                        "DESCRIPTION:Reminder to book your train ticket. Booking opens at 8:00 AM IST.\n" +
-                        "END:VEVENT\n" +
-                        "END:VCALENDAR";
-
+                    const icsData = `BEGIN:VCALENDAR\nVERSION:2.0\nBEGIN:VEVENT\nDTSTART:${startDate}\nDTEND:${endDate}\nSUMMARY:Book IRCTC Train Ticket\nDESCRIPTION:Reminder to book your train ticket. Booking opens at 8:00 AM IST.\nEND:VEVENT\nEND:VCALENDAR`;
+                    
                     const blob = new Blob([icsData], { type: 'text/calendar;charset=utf-8' });
                     const link = document.createElement('a');
                     link.href = window.URL.createObjectURL(blob);
                     link.setAttribute('download', 'TrainTicketReminder.ics');
-                    document.body.appendChild(link);
-                    link.click();
-                    document.body.removeChild(link);
+                    document.body.appendChild(link); link.click(); document.body.removeChild(link);
                 });
             }
 
-            // --- 4. TATKAL TIMER LOGIC ---
             function updateTatkalTimers() {
                 const now = new Date();
-                
                 function getTimeLeft(targetHour) {
                     let target = new Date(now);
                     target.setHours(targetHour, 0, 0, 0);
-                    
-                    if (now > target) {
-                        target.setDate(target.getDate() + 1);
-                    }
-                    
+                    if (now > target) target.setDate(target.getDate() + 1);
                     const diff = target - now;
-                    
-                    const h = String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0');
-                    const m = String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0');
-                    const s = String(Math.floor((diff / 1000) % 60)).padStart(2, '0');
-                    
-                    return `${h}h ${m}m ${s}s`;
+                    return `${String(Math.floor((diff / (1000 * 60 * 60)) % 24)).padStart(2, '0')}h ${String(Math.floor((diff / 1000 / 60) % 60)).padStart(2, '0')}m ${String(Math.floor((diff / 1000) % 60)).padStart(2, '0')}s`;
                 }
-
                 const acTimer = document.getElementById('acTimer');
                 const nonAcTimer = document.getElementById('nonAcTimer');
-                
                 if (acTimer) acTimer.innerText = getTimeLeft(10);
                 if (nonAcTimer) nonAcTimer.innerText = getTimeLeft(11);
             }
-            
             updateTatkalTimers();
             setInterval(updateTatkalTimers, 1000);
-
         });
     </script>
 </body>
